@@ -174,8 +174,9 @@ document.getElementById('ca').textContent = ' · '+DATA.length;
 document.getElementById('co').textContent = ' · '+okN;
 document.getElementById('cp').textContent = ' · '+prN;
 
-const map = L.map('map',{center:[44.92340,41.29780],zoom:18,maxZoom:20});
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:20,attribution:'&copy; OpenStreetMap'}).addTo(map);
+const map = L.map('map',{center:[44.92340,41.29780],zoom:18,maxZoom:20,attributionControl:false});
+L.control.attribution({prefix:false}).addAttribution('OpenStreetMap').addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:20,L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:20}).addTo(map);}).addTo(map);
 
 function popup(d){
   let h='<div class="pop">';
