@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Казачий некрополь ст. Убеженской — Карта</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+:root{--fd:'Cormorant Garamond',Georgia,serif;--fb:'Source Sans 3',sans-serif;--bg:#1a1a18;--sf:#252522;--bd:#3a3a36;--tx:#e8e4dc;--mt:#9c9a8e;--ac:#c4a265;--ok:#8a8478;--pr:#b94a3a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx)}
+.wrap{width:100%;max-width:1200px;margin:0 auto}
+.hdr{padding:2rem 1.5rem .75rem;text-align:center}
+.hdr h1{font-family:var(--fd);font-size:clamp(1.5rem,4vw,2.2rem);font-weight:600;letter-spacing:.02em;margin-bottom:.3rem}
+.hdr p{font-size:.9rem;color:var(--mt);font-weight:300}
+.bar{display:flex;gap:.5rem;padding:.75rem 1.5rem;align-items:center;flex-wrap:wrap}
+.bar .lb{font-size:.78rem;color:var(--mt);text-transform:uppercase;letter-spacing:.08em;margin-right:.2rem}
+.fb{font-family:var(--fb);font-size:.82rem;padding:.35rem .9rem;border:1px solid var(--bd);border-radius:2px;background:0 0;color:var(--mt);cursor:pointer;transition:all .2s;white-space:nowrap}
+.fb:hover{border-color:var(--ac);color:var(--tx)}
+.fb.on{background:rgba(196,162,101,.15);border-color:var(--ac);color:var(--ac)}
+.fb .c{font-size:.72rem;opacity:.7;margin-left:.3rem}
+.lg{display:flex;gap:1.2rem;padding:0 1.5rem .5rem;font-size:.78rem;color:var(--mt)}
+.li{display:flex;align-items:center;gap:.35rem}
+.ld{width:10px;height:10px;border-radius:50%;border:2px solid rgba(255,255,255,.25)}
+#map{width:100%;height:70vh;min-height:480px;max-height:800px;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.leaflet-container{background:var(--bg)}
+.leaflet-tile-pane{filter:brightness(.7) contrast(1.1) saturate(.25) sepia(.15)}
+.leaflet-control-zoom a{background:var(--sf)!important;color:var(--tx)!important;border-color:var(--bd)!important}
+.leaflet-control-zoom a:hover{background:var(--bd)!important}
+.leaflet-control-attribution{background:rgba(26,26,24,.85)!important;color:var(--mt)!important;font-size:10px!important}
+.leaflet-control-attribution a{color:var(--mt)!important;text-decoration:none!important}
+.m{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;border:2px solid rgba(255,255,255,.25);font-family:var(--fb);font-size:9px;font-weight:600;color:#fff;cursor:pointer;transition:transform .15s,background .15s;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.m:hover{transform:scale(1.3)}
+.m-ok{background:var(--ok)}.m-ok:hover{background:var(--ac)}
+.m-pr{background:var(--pr)}.m-pr:hover{background:#d4584a}
+.leaflet-popup-content-wrapper{background:var(--sf)!important;color:var(--tx)!important;border-radius:6px!important;border:1px solid var(--bd)!important;box-shadow:0 8px 32px rgba(0,0,0,.5)!important;padding:0!important}
+.leaflet-popup-tip{background:var(--sf)!important}
+.leaflet-popup-close-button{color:var(--mt)!important;font-size:18px!important;padding:6px 8px!important}
+.leaflet-popup-close-button:hover{color:var(--tx)!important}
+.leaflet-popup-content{margin:0!important}
+.pop{padding:1rem 1.25rem;max-width:320px;font-family:var(--fb)}
+.pop-n{font-family:var(--fd);font-size:.85rem;color:var(--ac);letter-spacing:.04em}
+.pop-t{font-size:.95rem;font-weight:500;line-height:1.35;margin:.15rem 0 .5rem}
+.pop-r{font-size:.82rem;color:var(--mt);line-height:1.4;margin-bottom:.25rem}
+.pop-c{font-size:.75rem;font-family:monospace;color:var(--mt);margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--bd)}
+.pop-w{font-size:.78rem;color:var(--pr);margin-top:.4rem;padding:.35rem .5rem;background:rgba(185,74,58,.12);border-radius:3px}
+.pop-img{margin-top:.6rem;border-radius:4px;overflow:hidden;background:var(--bg);text-align:center;min-height:60px}
+.pop-img img{width:100%;display:block;border-radius:4px}
+.pop-img .ph{padding:1.2rem .5rem;color:var(--mt);font-size:.78rem;border:1px dashed var(--bd);border-radius:4px}
+.pop-a{display:inline-block;margin-top:.5rem;font-size:.8rem;color:var(--ac);text-decoration:none;opacity:.8}
+.pop-a:hover{opacity:1}
+.ft{padding:.75rem 1.5rem;font-size:.78rem;color:var(--mt);text-align:center}
+@media(max-width:600px){#map{height:55vh;min-height:360px}.pop{max-width:260px}.bar,.lg{padding-left:1rem;padding-right:1rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hdr">
+    <h1>Казачий некрополь ст. Убеженской</h1>
+    <p>Интерактивная карта · <span id="cnt"></span> объектов</p>
+  </div>
+  <div class="bar">
+    <span class="lb">Показать:</span>
+    <button class="fb on" data-f="all">Все<span class="c" id="ca"></span></button>
+    <button class="fb" data-f="ok">С данными<span class="c" id="co"></span></button>
+    <button class="fb" data-f="pr">Требуют уточнения<span class="c" id="cp"></span></button>
+  </div>
+  <div class="lg">
+    <div class="li"><div class="ld" style="background:var(--ok)"></div>Описан в каталоге</div>
+    <div class="li"><div class="ld" style="background:var(--pr)"></div>Нет данных / проблема</div>
+  </div>
+  <div id="map"></div>
+  <div class="ft">Нажмите на номер для информации · Фото загружаются из репозитория проекта</div>
+</div>
+<script>
+// ═══════════════════════════════════════════════════════
+//  НАСТРОЙКА: замените на ваш реальный адрес GitHub Pages
+// ═══════════════════════════════════════════════════════
+const GITHUB = 'https://ВАШ-USERNAME.github.io/nekropol';
+// ═══════════════════════════════════════════════════════
+
+// Функция URL превью: photos/obj_02/01.jpg
+function photoUrl(n) {
+  return GITHUB + '/photos/obj_' + String(n).padStart(2,'0') + '/01.jpg';
+}
+
+// p:true = проблема (пустой каталог или дубль координат)
+const DATA = [
+  // ── С данными ──
+  {n:2,lat:44.923712,lon:41.297932,name:"Кобльков. Жена Елена",comment:"Есть в исповедной росписи 1827 (Кабельков). Насселил ст. Убеж с 1895",photos:"https://drive.google.com/drive/folders/10F-nhY7jUqcMmqlAKn4l-FwJMTRfUaYj"},
+  {n:3,lat:44.923677,lon:41.297889,name:"Памятник с маками",photos:"https://drive.google.com/drive/folders/1D9xM6Ny0SdgstZTacbQMqnJU0NxhHU3B"},
+  {n:4,lat:44.923596,lon:41.297920,name:"Квадратный крест с бетонной опалубкой",comment:"Квадратный памятник с равносторонним крестом",photos:"https://drive.google.com/drive/folders/1byl_ezO8jL2TdN0bW19QgUeCiuWa-W0n"},
+  {n:5,lat:44.923633,lon:41.298010,name:"Малый крест с расширяющимися лопастями и округлым верхом",photos:"https://drive.google.com/drive/folders/19MI7zMpEDsV3yQCwqPDg0ndmF9TjJhXL"},
+  {n:6,lat:44.923644,lon:41.297892,name:"Прямоугольная плита с православным крестом",comment:"Прямоугольный с опалубкой и православным крестом",photos:"https://drive.google.com/drive/folders/1xIA2G1R1leLq-G_vnt97Yzy-GFpCKb1d"},
+  {n:7,lat:44.923659,lon:41.297867,name:"Георгиевский (?) крест на ступенчатом пьедестале",comment:"Три основных части: основание, пьедестал и крест наверху",photos:"https://drive.google.com/drive/folders/1LCno4LAq5DiB9SkgYD6h0Z4uMSTpVm7i"},
+  {n:8,lat:44.923736,lon:41.297743,name:"Георгиевский (?) крест на расширяющемся основании",comment:"Похож на крест №22",photos:"https://drive.google.com/drive/folders/1oJszLAQt6bF9Wi02Dni2sP2h4KkZ7I4S"},
+  {n:9,lat:44.923585,lon:41.297687,name:"Прямой крест с крестообразными лопастями",comment:"Нет прямого фото, только боковые",photos:"https://drive.google.com/drive/folders/120UxyBXjIa-RKvvvIq1PU3_rRYMQvjbp"},
+  {n:10,lat:44.923515,lon:41.297600,name:"Металлический кованный крест",photos:"https://drive.google.com/drive/folders/1e0_OK8iHiU9qjrwut08fBa8hYgiNY60f"},
+  {n:11,lat:44.923626,lon:41.297870,name:"Большой крест с полукруглыми окончаниями на пьедестале",photos:"https://drive.google.com/drive/folders/15ZTCRZ88RF33MzScj6wT5oxVjTDmHUMB"},
+  {n:12,lat:44.923488,lon:41.297743,name:"Могильная плита — козак Андрей Мануилов",comment:"Мануилов в исповедной росписи 1827 года",photos:"https://drive.google.com/drive/folders/1lshZuFnG-8b8fwxrcVD_ysBo3KBppqXg"},
+  {n:13,lat:44.923473,lon:41.297768,name:"Простой прямоугольный крест с выпуклым рисунком",photos:"https://drive.google.com/drive/folders/13fCiWIYkkLipbAVOBAcsK8b8fTs8aN7v"},
+  {n:14,lat:44.923688,lon:41.297421,name:"Сколотый сверху крест",comment:"КАЗ 1915 (?)",photos:"https://drive.google.com/drive/folders/1WwHM6ahvdRpCB7Tve_EE9jpEGRHyTAtc"},
+  {n:15,lat:44.923649,lon:41.297285,name:"Прямоугольный камень без опознавательных знаков",photos:"https://drive.google.com/drive/folders/12lvy_xNhdZkoaK9HcC8KMYoQA4Y2ujt0"},
+  {n:16,lat:44.923467,lon:41.297278,name:"Утопленный в землю крест с узким верхом",comment:"Сначала выкопать если достанут",photos:"https://drive.google.com/drive/folders/1-E1igtkx-3q2C6cXdZadoTh5gilF3qkz"},
+  {n:17,lat:44.923403,lon:41.297331,name:"Крест с широким верхом",comment:"Утоплен в землю на 2/3",photos:"https://drive.google.com/drive/folders/1lNSy3jkt96GxwXFBlJW37SBYdm2Jxrs3"},
+  {n:18,lat:44.923474,lon:41.297068,name:"Плита с полукруглым верхом и лютеранским крестом",comment:"Табличка металлическая утеряна",photos:"https://drive.google.com/drive/folders/1TTb_S_xIeNXt0dh32FxXMHx7Sa4alYUk"},
+  {n:19,lat:44.923298,lon:41.297550,name:"Плита прямоугольная с выпуклым крестом",photos:"https://drive.google.com/drive/folders/1--1ipzhSRnXiPOY1XL-a7IMHvDBEzd6h"},
+  {n:20,lat:44.923250,lon:41.297578,name:"Разломанная плита с полукруглым верхом",photos:"https://drive.google.com/drive/folders/1FdkJFOl5YCRRhobkuldmct-9BUY7as87"},
+  {n:22,lat:44.923339,lon:41.298083,name:"Георгиевский (?) крест на расширяющемся основании",comment:"Похож на крест №8",photos:"https://drive.google.com/drive/folders/1MUkOguFuUipJuVv3jAcoUCozKX5AuluW"},
+  {n:23,lat:44.923348,lon:41.297919,name:"Средний крест с полукруглыми лопастями",photos:"https://drive.google.com/drive/folders/1L-P17rdh3sd3csm0h_3hWCqUe7BXfWXp"},
+  {n:24,lat:44.923438,lon:41.298074,name:"Прямой утопленный крест в опалубку",photos:"https://drive.google.com/drive/folders/1g-41IotEbxyrqdfxTN_2epxwg_Tpdt5S"},
+  {n:27,lat:44.923630,lon:41.298313,name:"Широкий лапчатый крест — казак Сонин",comment:"По данным ВГД, в исповедной росписи 1827 года",photos:"https://drive.google.com/drive/folders/1SZUrB2xCRYe4RI7PbD7cflhlRAVWsLPG"},
+  {n:28,lat:44.923790,lon:41.298205,name:"Широкий лапчатый крест кривой",comment:"18?6 В память Алтушиных",photos:"https://drive.google.com/drive/folders/1O5jFXLz1kzcoLmBce6g319sY-PIDvxqk"},
+  {n:29,lat:44.923773,lon:41.298183,name:"Средний крест с длинным основанием",photos:"https://drive.google.com/drive/folders/1t47h0xtbYBJZxqDqqEeByMMjyJJm1DnT"},
+  {n:30,lat:44.923757,lon:41.298208,name:"Крест с «кокошником»",photos:"https://drive.google.com/drive/folders/1VDp8sJkpOJDHHd1npiQ3Sm72WyeMN1k4"},
+  {n:31,lat:44.923777,lon:41.298276,name:"Крест укороченный с выпуклым рисунком",photos:"https://drive.google.com/drive/folders/1uwkUaBkFt4qnpEOCR0_wdTXwxVyG2mtI"},
+  {n:32,lat:44.923872,lon:41.298174,name:"Георгиевский (?) крест с двухступенчатым основанием",comment:"Памяти Гасаян Г. Н.",photos:"https://drive.google.com/drive/folders/1g7ffs7hvOTA9_C7kp4VCMkc4Z261Lf14"},
+  {n:33,lat:44.923569,lon:41.298412,name:"Крест широкий лапчатый",comment:"Утоплен",photos:"https://drive.google.com/drive/folders/1svcuQw2puJA0QJLN1bztDFXP_D_4lWx2"},
+  {n:34,lat:44.923516,lon:41.298347,name:"Крест широкий лапчатый",comment:"Утоплен на 2/3",photos:"https://drive.google.com/drive/folders/1jvkUWWUT0UCOkLZ7XEBQZX-MqwP7l6-q"},
+  {n:36,lat:44.923408,lon:41.298520,name:"Прямой крест с косой перекладиной",comment:"Утоплен наполовину",photos:"https://drive.google.com/drive/folders/1nUPvU0XqSpgBYcqCTyCAwbG8DyZRnlcH"},
+  {n:37,lat:44.923450,lon:41.298353,name:"Плита малая",comment:"Поросшая мхом, утопленная в землю",photos:"https://drive.google.com/drive/folders/1eKBtuxG6-ybjAHMdfmLzKA_C8OAtL428"},
+  {n:38,lat:44.923452,lon:41.298399,name:"Крест широкий лапчатый",comment:"Утоплен до верхней лопасти. Дата: 1882",photos:"https://drive.google.com/drive/folders/1Fhnnpq2EuuIJRs0vfZVCVx0BZTHDD-gX"},
+  {n:39,lat:44.923205,lon:41.298398,name:"Крест с «кокошником»",comment:"По форме похож на крест №30",photos:"https://drive.google.com/drive/folders/1_jn0g1nB2RoEjGIJq8tp_7nxfU3Ulu9Q"},
+  {n:40,lat:44.923367,lon:41.298337,name:"Прямой крест с крестообразными лопастями",comment:"Похож на крест №9, утоплен. Дата: 1891",photos:"https://drive.google.com/drive/folders/1nEBeg-yIa-HKS-_RE41Qr8dyzgCdey8d"},
+  {n:41,lat:44.923481,lon:41.298303,name:"Разломанный лапчатый крест",comment:"Разломан, частично утоплен, круглая дырка",photos:"https://drive.google.com/drive/folders/1-lEu8tZeyJ7OFeYh-Mp2S0x_2_d2VsIq"},
+  {n:42,lat:44.923499,lon:41.298325,name:"Прямой крест с короткими лопастями",comment:"Гравировка на верхней лопасти, утоплен",photos:"https://drive.google.com/drive/folders/10BkEeklr8DosGHvF-qwuyRmMULJoc_rN"},
+  {n:43,lat:44.923431,lon:41.298285,name:"Лапчатый крест",comment:"Утоплен, видна верхняя часть",photos:"https://drive.google.com/drive/folders/1j2pSzaH04CMd01uAjR2iVJ7vpOPYJShD"},
+  {n:45,lat:44.923085,lon:41.297593,name:"Безымянный металлический крест",photos:"https://drive.google.com/drive/folders/1QL9tUfn7fmqMm60rX67EvZsEqNql18Ug"},
+  {n:46,lat:44.923173,lon:41.296256,name:"Памятник хорунжему П. Ф. Крамарову",comment:"1-й Черноморский полк. 1888–1912. Предок в росписи 1827",photos:"https://drive.google.com/drive/folders/1mF-FmPrEf758LeTEt-ujBrHTBI2ep0Y1"},
+  {n:47,lat:44.923188,lon:41.296231,name:"Большой каменный многоступенчатый памятник",comment:"У входа, надпись утеряна",photos:"https://drive.google.com/drive/folders/15VJ8j76dCX3O-vzVYaqHTlGXOWO1SA_O"},
+  {n:66,lat:44.923416,lon:41.297959,name:"Крест с опалубкой средний",photos:"https://drive.google.com/drive/folders/1UPSJXIwDe0cOGcfywv4ATFUiZL_sKcET"},
+  {n:67,lat:44.923435,lon:41.298028,name:"Объект №67",comment:"Надпись: З Ткла",photos:"https://drive.google.com/drive/folders/1D9SjPAAFatGQZIefkMwWscoGrA_-5i_D"},
+  {n:69,lat:44.923528,lon:41.297879,name:"Короткий крест прямоугольный",photos:"https://drive.google.com/drive/folders/1WDRxDAF0oDiXu14RENY4QDviCqluNrku"},
+  {n:70,lat:44.923425,lon:41.297795,name:"Короткий крест частично утопленный",comment:"Неразборчивая надпись",photos:"https://drive.google.com/drive/folders/1kck9U62nWZ0yxc6cFYe_q0TWCfrcKWFY"},
+  {n:71,lat:44.923439,lon:41.297374,name:"Округлый многоуровневый дореволюционный памятник",photos:"https://drive.google.com/drive/folders/1tHV2Dh_YbwMN9ETTJ2WWKsUHhqexNMYF"},
+  {n:72,lat:44.923327,lon:41.297454,name:"Крест с опалубкой (новая)",photos:"https://drive.google.com/drive/folders/1DHu2feaofa4ej_poiPKMqkD3FyKyr7r_"},
+  {n:74,lat:44.923259,lon:41.297414,name:"Плита малая (часть 3 захоронений «священника и детей»)",photos:"https://drive.google.com/drive/folders/1d9vero8xz4ewe2_LRVlnTIFvitwP4yAe"},
+  {n:75,lat:44.923257,lon:41.297367,name:"Фрагмент плиты + часть креста",photos:"https://drive.google.com/drive/folders/1TgQip9uD1-rbn6sMqgokh0IceeL7ANIQ"},
+  {n:78,lat:44.923396,lon:41.297891,name:"Сергей Ларионович Гальков, 1915",comment:"Раскопки",photos:"https://drive.google.com/drive/folders/1naowt7ygxf9ATbB99-ASmyzcHR55saWU"},
+  {n:79,lat:44.923500,lon:41.297275,name:"Лапчатый крест с надписями",comment:"Раскопки",photos:"https://drive.google.com/drive/folders/1-o5AZwEleSWcdptyhhRlpMorHvXebNA6"},
+  {n:82,lat:44.923417,lon:41.297260,name:"Свежевыкопанный крест",comment:"Марта Данила",photos:"https://drive.google.com/drive/folders/1RqofkKk4mMACnsT2JNkU0e2K9M1qu2iM"},
+  // ── Проблемы координат ──
+  {n:44,lat:44.923426,lon:41.298192,name:"Фрагменты памятников",comment:"Два фрагмента + каменная табличка",photos:"https://drive.google.com/drive/folders/18qvV0a-VWV8bZREEMQpLj_qLGIG3sHhV",p:true,reason:"3 объекта в одной точке"},
+  {n:55,lat:44.923540,lon:41.298158,p:true,reason:"Координаты дублируют №54"},
+  {n:61,lat:44.923473,lon:41.298117,p:true,reason:"Координаты дублируют №57"},
+  {n:73,lat:44.923311,lon:41.297479,name:"Крест с опалубкой (новая)",photos:"https://drive.google.com/drive/folders/1R-xUcb5-8bk3Fss59btZR32sIIGlg-a_",p:true,reason:"Координаты дублируют №77"},
+  {n:77,lat:44.923311,lon:41.297479,name:"Касьянов Иван Михайлович",photos:"https://drive.google.com/drive/folders/1ijLKECohz08bgxEymlGUtBojDKkm5CVo",p:true,reason:"Координаты дублируют №73"},
+  // ── Нет данных ──
+  {n:48,lat:44.923668,lon:41.298053,p:true,reason:"Нет данных в каталоге"},
+  {n:49,lat:44.923650,lon:41.298031,p:true,reason:"Нет данных в каталоге"},
+  {n:50,lat:44.923648,lon:41.297985,p:true,reason:"Нет данных в каталоге"},
+  {n:51,lat:44.923587,lon:41.298084,p:true,reason:"Нет данных в каталоге"},
+  {n:52,lat:44.923624,lon:41.298174,p:true,reason:"Нет данных в каталоге"},
+  {n:54,lat:44.923540,lon:41.298158,p:true,reason:"Нет данных, координаты дублируют №55"},
+  {n:56,lat:44.923424,lon:41.298145,p:true,reason:"Нет данных в каталоге"},
+  {n:57,lat:44.923473,lon:41.298117,p:true,reason:"Нет данных, координаты дублируют №61"},
+  {n:58,lat:44.923510,lon:41.298207,p:true,reason:"Нет данных в каталоге"},
+  {n:59,lat:44.923523,lon:41.298136,p:true,reason:"Нет данных в каталоге"},
+  {n:60,lat:44.923455,lon:41.298096,p:true,reason:"Нет данных в каталоге"},
+  {n:62,lat:44.923422,lon:41.298099,p:true,reason:"Нет данных в каталоге"},
+  {n:63,lat:44.923438,lon:41.298074,p:true,reason:"Нет данных в каталоге"},
+  {n:64,lat:44.923304,lon:41.298040,p:true,reason:"Нет данных в каталоге"},
+  {n:65,lat:44.923354,lon:41.298058,p:true,reason:"Нет данных в каталоге"},
+  {n:68,lat:44.923466,lon:41.297978,p:true,reason:"Нет данных в каталоге"},
+  {n:80,lat:44.923430,lon:41.296838,p:true,reason:"Нет данных в каталоге"},
+];
+
+const okN = DATA.filter(d=>!d.p).length;
+const prN = DATA.filter(d=>d.p).length;
+document.getElementById('cnt').textContent = DATA.length;
+document.getElementById('ca').textContent = ' · '+DATA.length;
+document.getElementById('co').textContent = ' · '+okN;
+document.getElementById('cp').textContent = ' · '+prN;
+
+const map = L.map('map',{center:[44.92340,41.29780],zoom:18,maxZoom:20});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:20,attribution:'&copy; OpenStreetMap'}).addTo(map);
+
+function popup(d){
+  let h='<div class="pop">';
+  h+='<div class="pop-n">Объект №'+d.n+'</div>';
+  h+='<div class="pop-t">'+(d.name||'Не описан')+'</div>';
+  if(d.comment) h+='<div class="pop-r">'+d.comment+'</div>';
+  if(d.reason) h+='<div class="pop-w">'+d.reason+'</div>';
+  h+='<div class="pop-c">'+d.lat.toFixed(6)+'°N, '+d.lon.toFixed(6)+'°E</div>';
+  // Фото: пробуем загрузить с GitHub, если нет — показываем заглушку
+  h+='<div class="pop-img"><img src="'+photoUrl(d.n)+'" onerror="this.parentNode.innerHTML=\'<div class=ph>'+(d.photos?'Фото пока не загружено в репозиторий':'Фото не добавлено')+'</div>\'" alt="Объект №'+d.n+'"></div>';
+  if(d.photos) h+='<a class="pop-a" href="'+d.photos+'" target="_blank" rel="noopener">Все фото на Google Drive ↗</a>';
+  h+='</div>';
+  return h;
+}
+
+const markers=[];
+DATA.forEach(d=>{
+  const cls=d.p?'m m-pr':'m m-ok';
+  const ic=L.divIcon({className:'',iconSize:[24,24],iconAnchor:[12,12],html:'<div class="'+cls+'">'+d.n+'</div>'});
+  const mk=L.marker([d.lat,d.lon],{icon:ic}).bindPopup(popup(d),{maxWidth:340}).addTo(map);
+  mk._d=d;markers.push(mk);
+});
+
+map.fitBounds(L.latLngBounds(DATA.map(d=>[d.lat,d.lon])).pad(0.05));
+
+document.querySelectorAll('.fb').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.fb').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const f=b.dataset.f;
+    markers.forEach(m=>{
+      const s=f==='all'||(f==='ok'&&!m._d.p)||(f==='pr'&&m._d.p);
+      if(s)m.addTo(map);else map.removeLayer(m);
+    });
+  });
+});
+</script>
+</body>
+</html>
