@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Казачий некрополь ст. Убеженской</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ── Навигация ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Некрополь Убеженской</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Меню">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Главная</a></li>
+      <li><a href="about.html">О проекте</a></li>
+      <li><a href="map.html">Карта</a></li>
+      <li><a href="catalog.html">Каталог</a></li>
+      <li><a href="timeline.html">Хроника</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Герой ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Исследовательский проект · 2025–2026</span>
+    <h1>Казачий некрополь<br>ст. Убеженской</h1>
+    <p class="hero-sub">Первый в России системный проект по документированию и сохранению казачьего некрополя. Станица Убеженская, Успенский район, Краснодарский край.</p>
+    <a href="map.html" class="hero-cta">Исследовать карту <span>&#8594;</span></a>
+  </div>
+</section>
+
+<!-- ── Цифры ── -->
+<div class="wrap">
+  <div class="stats fade-in">
+    <div class="stat">
+      <div class="stat-num">74</div>
+      <div class="stat-label">объекта на карте</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">11</div>
+      <div class="stat-label">идентифицированных имён</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1882–1915</div>
+      <div class="stat-label">диапазон читаемых дат</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">фамилии подтверждены росписью 1827 г.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Тизеры разделов ── -->
+<div class="wrap">
+  <section class="section">
+    <div class="section-label">Разделы проекта</div>
+    <div class="section-title">Что внутри</div>
+    <div class="section-desc">Проект объединяет полевую работу, архивные исследования, цифровую картографию и 3D-моделирование надгробий.</div>
+
+    <div class="teasers">
+      <a href="about.html" class="teaser fade-in">
+        <span class="teaser-icon">&#9881;</span>
+        <h3>О проекте</h3>
+        <p>Проблема утраты казачьих некрополей, методология исследования, аналоги в России и за рубежом, источники.</p>
+        <span class="teaser-link">Подробнее &#8594;</span>
+      </a>
+      <a href="map.html" class="teaser fade-in">
+        <span class="teaser-icon">&#9900;</span>
+        <h3>Интерактивная карта</h3>
+        <p>74 объекта с GPS-координатами, фильтрация, попапы с фото и данными. Leaflet.js + OpenStreetMap.</p>
+        <span class="teaser-link">Открыть карту &#8594;</span>
+      </a>
+      <a href="catalog.html" class="teaser fade-in">
+        <span class="teaser-icon">&#9783;</span>
+        <h3>Каталог объектов</h3>
+        <p>Карточки 54 описанных надгробий: форма, материал, надписи, состояние. Фильтрация по типу креста.</p>
+        <span class="teaser-link">Просмотреть каталог &#8594;</span>
+      </a>
+      <a href="timeline.html" class="teaser fade-in">
+        <span class="teaser-icon">&#8987;</span>
+        <h3>Хроника и план</h3>
+        <p>Что сделано, что в работе, что впереди. Таймлайн от первого выезда до подачи на грант.</p>
+        <span class="teaser-link">Хроника &#8594;</span>
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- ── Персоналии ── -->
+<div class="wrap">
+  <section class="section">
+    <div class="section-label">Идентифицированные имена</div>
+    <div class="section-title">Люди за камнем</div>
+    <div class="section-desc">Благодаря архивной работе с исповедными росписями 1827 года и метрическими книгами удалось установить 11 имён. 4 фамилии подтверждены документально.</div>
+
+    <div class="persons-grid" id="persons"></div>
+  </section>
+</div>
+
+<!-- ── Методология ── -->
+<div class="wrap">
+  <section class="section">
+    <div class="section-label">Технология</div>
+    <div class="section-title">Как мы читаем стёртые надписи</div>
+    <div class="section-grid">
+      <div class="prose">
+        <p>Многие надписи на каменных крестах XIX века стёрты временем настолько, что не читаются визуально. Но методология 3D-моделирования через <strong>Agisoft Metashape</strong> позволяет восстановить их через карту высот рельефа.</p>
+        <p>Методика разработана в рамках проекта <a href="https://cir.rssda.su/" target="_blank" rel="noopener">«Свод русских надписей»</a> и применяется для памятников даже XVII века. По рекомендации <strong>А. А. Зиганшиной</strong>, мы адаптируем этот подход для казачьих надгробий Убеженской.</p>
+        <p>Процесс: 30–50 ортогональных снимков каждого объекта &rarr; построение 3D-модели &rarr; генерация карты высот &rarr; чтение надписей в рельефе поверхности.</p>
+      </div>
+      <div>
+        <div class="method-card">
+          <h4>Agisoft Metashape</h4>
+          <p>Программа фотограмметрии для построения 3D-моделей по фотографиям. Позволяет создать карту высот, на которой видны рельефные надписи, невидимые невооружённым глазом.</p>
+        </div>
+        <div class="method-card">
+          <h4>Статья Зиганшиной А. А. и Дынина М. Д.</h4>
+          <p>«Документирование надгробия: современные методы» — обоснование применения 3D-моделирования для чтения надписей на исторических надгробиях.</p>
+        </div>
+        <div class="method-card">
+          <h4>Видео о процессе</h4>
+          <p><a href="https://youtu.be/gitqWymZb3I?si=D_iFgjcTdo_DtGD5" target="_blank" rel="noopener">Как я делаю 3D-модель</a> · <a href="https://youtu.be/vaxZ9yhS-w4?si=PpxFrS7foMEymR4q" target="_blank" rel="noopener">Моделирование Слободского некрополя</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── Подвал ── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>Казачий некрополь ст. Убеженской</strong><br>
+      Исследовательский проект · 2025–2026<br>
+      Успенский район, Краснодарский край
+    </div>
+    <div class="footer-links">
+      <a href="about.html">О проекте</a>
+      <a href="map.html">Карта</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="timeline.html">Хроника</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script>
+const cont = document.getElementById('persons');
+PERSONS.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'person-card fade-in';
+  card.innerHTML = `
+    <div class="person-obj">${p.obj}</div>
+    <div class="person-info">
+      <h4>${p.name}</h4>
+      <p>${p.details}</p>
+      ${p.confirmed ? '<span class="person-badge">Подтверждён росписью 1827 г.</span>' : ''}
+    </div>
+  `;
+  cont.appendChild(card);
+});
+</script>
+</body>
+</html>
