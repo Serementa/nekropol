@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О проекте — Казачий некрополь ст. Убеженской</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Некрополь Убеженской</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Меню">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="about.html" class="active">О проекте</a></li>
+      <li><a href="map.html">Карта</a></li>
+      <li><a href="catalog.html">Каталог</a></li>
+      <li><a href="timeline.html">Хроника</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ── Заголовок ── -->
+  <section class="section" style="border-top:none; padding-top:3rem;">
+    <div class="section-label">О проекте</div>
+    <div class="section-title">Зачем мы это делаем</div>
+    <div class="section-desc">Каменные кресты казачьих некрополей юга России разрушаются. Наш проект — первая попытка системно зафиксировать, каталогизировать и сохранить цифровыми методами наследие станицы Убеженской.</div>
+  </section>
+
+  <!-- ── Проблема ── -->
+  <section class="section">
+    <div class="section-label">Контекст</div>
+    <div class="section-title">Проблема</div>
+    <div class="section-grid">
+      <div class="prose">
+        <p>Каменные кресты у казаков — особые по форме и материалу. Они несут в себе информацию о людях, дизайне, ремесленных традициях целого региона. Но <strong>никакой системной типологии крестов Кубани, Дона и Крыма до сих пор не создано</strong>.</p>
+        <p>Существуют точечные исследования: статья Р. С. Лопина по кладбищу Славянска-на-Кубани, книга И. В. Сапожникова по Одессе, типология А. Л. Потравнова и Т. Ю. Хмельник по Северо-Западу России. Но комплексного подхода к казачьим некрополям не было.</p>
+        <p>Всё, что есть в публичном пространстве, — это <strong>разрозненные посты в блогах</strong> (ЖЖ и т. п.), где люди делятся наблюдениями: «вот такие кресты, всё разрушается». Аналогов нашему системному подходу в России нет.</p>
+      </div>
+      <div>
+        <div class="method-card">
+          <h4>Что теряется</h4>
+          <p>Каменные кресты конца XVIII — начала XX века. Надписи стираются, камни уходят в землю, объекты разрушаются. На кладбище Убеженской более 20 крестов утоплены в грунт на треть и более.</p>
+        </div>
+        <div class="method-card">
+          <h4>Читаемые даты</h4>
+          <p>Диапазон подтверждённых дат: 1882–1915. Но по форме и стилистике многие кресты могут быть значительно старше — конца XVIII века, времени основания станицы.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Что мы делаем ── -->
+  <section class="section">
+    <div class="section-label">Методы</div>
+    <div class="section-title">Что мы делаем</div>
+    <div class="section-grid">
+      <div class="prose">
+        <p><strong>GPS-фиксация</strong> каждого объекта с точностью до метра. 78 точек зафиксировано, 74 нанесены на интерактивную карту, 19 точек обозначают границу исторического участка.</p>
+        <p><strong>Фотофиксация</strong> всех доступных объектов. Для каждого надгробия создаётся папка с фотографиями разного ракурса.</p>
+        <p><strong>Каталогизация:</strong> форма, материал, размеры, надписи, состояние, тип креста. 54 объекта полностью описаны в базе данных с 15 колонками.</p>
+        <p><strong>Архивная работа:</strong> сопоставление имён на надгробиях с исповедными росписями 1827 года и метрическими книгами. 4 фамилии подтверждены документально: Мануилов, Кабельков, Сонин, Крамаров.</p>
+      </div>
+      <div>
+        <div class="method-card">
+          <h4>3D-моделирование</h4>
+          <p><strong>Agisoft Metashape (Fotoscan)</strong> — программа фотограмметрии. 30–50 снимков ортогонально поверхности камня. Результат — 3D-модель и карта высот, на которой видны надписи, не различимые глазом.</p>
+          <p style="margin-top:.5rem">Методика рекомендована <strong>А. А. Зиганшиной</strong> из проекта «Свод русских надписей». В этом проекте аналогичный подход применяется к памятникам с 1680 года.</p>
+        </div>
+        <div class="method-card">
+          <h4>Методология «Свода русских надписей»</h4>
+          <p>Проект по сохранению артефактов письменности на надгробиях XVII–XVIII веков. Используют более сложные методы, но 3D через Agisoft — доступная альтернатива для нашего масштаба.</p>
+          <p style="margin-top:.5rem"><a href="https://cir.rssda.su/methodology/" target="_blank">Описание методологии &#8594;</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Аналоги ── -->
+  <section class="section">
+    <div class="section-label">Контекст</div>
+    <div class="section-title">Аналоги и ориентиры</div>
+    <div class="section-desc">Проектов по казачьим некрополям в России нет. Но есть проекты по историческим некрополям, которые служат для нас ориентиром.</div>
+
+    <div class="analogues">
+      <div class="analogue-card fade-in">
+        <h4>Старое кладбище, г. Таганрог</h4>
+        <p>Наиболее полный российский аналог: сайт, печатный путеводитель, виртуальный тур, 3D-модели 11 объектов, экскурсии, Telegram-канал. 3D-моделирование реализовано при участии А. А. Зиганшиной и поддержке фонда «Внимание».</p>
+        <div class="analogue-links">
+          <a href="http://cemetery.su/" target="_blank">Сайт</a>
+          <a href="http://vivaldi.taglib-collection.ru/book/2024/staroe_kladbishche_taganroga.pdf/view/" target="_blank">Путеводитель</a>
+          <a href="https://marfano.ru/pltg/" target="_blank">Виртуальный тур</a>
+          <a href="https://t.me/cemetery_su/" target="_blank">Telegram</a>
+        </div>
+      </div>
+      <div class="analogue-card fade-in">
+        <h4>Слободское кладбище, г. Слободской</h4>
+        <p>Печатный каталог с фотографиями. Параллельно идёт работа над 3D-моделями на базе ВятГУ (исследователь — Маргарита Глазырина). Нет собственного сайта, но публикуются статьи и проводятся лекции.</p>
+        <div class="analogue-links">
+          <a href="https://youtu.be/vaxZ9yhS-w4?si=PpxFrS7foMEymR4q" target="_blank">Видео моделирования</a>
+        </div>
+      </div>
+      <div class="analogue-card fade-in">
+        <h4>Проект «Свод русских надписей»</h4>
+        <p>Академический проект по сохранению артефактов письменности на надгробиях 1680+ годов. Методология моделирования стала основой для нашего подхода к работе с казачьими крестами.</p>
+        <div class="analogue-links">
+          <a href="https://cir.rssda.su/" target="_blank">Сайт проекта</a>
+          <a href="https://cir.rssda.su/methodology/" target="_blank">Методология</a>
+          <a href="https://cir.rssda.su/inscriptions/" target="_blank">Примеры объектов</a>
+        </div>
+      </div>
+      <div class="analogue-card fade-in">
+        <h4>Куяльницкое кладбище, Одесса</h4>
+        <p>Наиболее технически продвинутый зарубежный аналог. Профинансирован Евросоюзом. Включает план кладбища с нанесёнными объектами, 3D-модели, описания и историческую справку. Много крестов, похожих на убеженские по форме.</p>
+        <div class="analogue-links">
+          <a href="https://pixelatedrealities.org/uk/portfolio/czvyntar-sotnykivskoyi-sichi/" target="_blank">Проект</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Типология ── -->
+  <section class="section">
+    <div class="section-label">Сравнительный анализ</div>
+    <div class="section-title">Типология крестов</div>
+    <div class="section-grid">
+      <div class="prose">
+        <p>Книга <strong>И. В. Сапожникова «Каменные кресты предместий Одессы (конец XVI – XIX вв.)»</strong> (Одесса, 1999) содержит обширную фотофиксацию и анализ казачьих надгробий. Формы крестов очень близки к убеженским — несмотря на ручную работу и отсутствие точных совпадений.</p>
+        <p>Для контраста: книга <strong>А. Л. Потравнова и Т. Ю. Хмельник</strong> описывает типологию крестов Северо-Запада России — формы сильно отличаются от южнорусских, что подчёркивает региональную специфику казачьей традиции.</p>
+        <p>Также обнаружены <strong>похожие кресты на кладбище Невинномысска</strong> — ожидаются дополнительные фотоматериалы для сравнительного анализа.</p>
+      </div>
+      <div>
+        <div class="method-card">
+          <h4>Типы крестов в каталоге Убеженской</h4>
+          <p id="type-stats" style="font-size:.82rem; color:var(--mt); line-height:1.6;"></p>
+        </div>
+        <div class="method-card">
+          <h4>Планы по типологии</h4>
+          <p>Q2 2026 — формальная классификация по форме с визуальными схемами. Сравнение с аналогами Одессы и Невинномысска. Выявление региональных закономерностей.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Источники ── -->
+  <section class="section">
+    <div class="section-label">Библиография</div>
+    <div class="section-title">Источники и ссылки</div>
+    <div class="section-desc">Все использованные в проекте источники: научные статьи, книги, проекты-аналоги, методологические материалы.</div>
+
+    <div class="sources-list" id="sources"></div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>Казачий некрополь ст. Убеженской</strong><br>
+      Исследовательский проект · 2025–2026
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="map.html">Карта</a>
+      <a href="catalog.html">Каталог</a>
+      <a href="timeline.html">Хроника</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script>
+// Статистика типов
+const typeLabels = {'lapchaty':'Лапчатый крест','georgievsky':'Георгиевский крест','plita':'Плита / камень','kokoshnik':'С «кокошником»','pryamoy':'Прямой крест','metallic':'Металлический','opalubka':'С опалубкой','multi':'Многоступенчатый','other':'Иная форма'};
+const counts = {};
+DATA.filter(d => !d.p && d.formType).forEach(d => { counts[d.formType] = (counts[d.formType]||0)+1; });
+const statsEl = document.getElementById('type-stats');
+statsEl.innerHTML = Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `${typeLabels[k] || k}: <strong>${v}</strong>`).join(' · ');
+
+// Источники
+const srcCont = document.getElementById('sources');
+const typeNames = {method:'Метод', article:'Статья', analogue:'Аналог', book:'Книга', blog:'Блог'};
+SOURCES.forEach(s => {
+  const el = document.createElement('div');
+  el.className = 'source-item';
+  const cls = s.type || 'analogue';
+  let title = s.title;
+  if (s.url) title = `<a href="${s.url}" target="_blank">${s.title}</a>`;
+  el.innerHTML = `<span class="source-type ${cls}">${typeNames[cls] || cls}</span><span class="source-title">${title}</span>`;
+  srcCont.appendChild(el);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Хроника — Казачий некрополь ст. Убеженской</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.team-card {
+  background: var(--sf);
+  border: 1px solid var(--bd);
+  border-radius: 4px;
+  padding: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+}
+.team-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bd);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--mt);
+  flex-shrink: 0;
+  border: 2px solid var(--bd-light);
+}
+.team-info h4 {
+  font-family: var(--fd);
+  font-size: .95rem;
+  font-weight: 600;
+  margin-bottom: .15rem;
+}
+.team-role {
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--ac);
+  margin-bottom: .3rem;
+}
+.team-info p {
+  font-size: .82rem;
+  color: var(--mt);
+  line-height: 1.45;
+}
+.video-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+.video-link {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--sf);
+  border: 1px solid var(--bd);
+  border-radius: 4px;
+  padding: .75rem 1rem;
+  color: var(--tx);
+  font-size: .85rem;
+  transition: border-color .2s;
+  text-decoration: none;
+}
+.video-link:hover { border-color: var(--ac); opacity: 1; }
+.video-link span { font-size: 1.2rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Некрополь Убеженской</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Меню">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="about.html">О проекте</a></li>
+      <li><a href="map.html">Карта</a></li>
+      <li><a href="catalog.html">Каталог</a></li>
+      <li><a href="timeline.html" class="active">Хроника</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ── Заголовок ── -->
+  <section class="section" style="border-top:none; padding-top:3rem;">
+    <div class="section-label">Хроника и план</div>
+    <div class="section-title">От первого выезда к виртуальному туру</div>
+    <div class="section-desc">Хронология проекта: что уже сделано, что в работе сейчас и что запланировано. Каждый этап приближает нас к созданию полноценного цифрового архива некрополя.</div>
+  </section>
+
+  <!-- ── Таймлайн ── -->
+  <section class="section">
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- ── Видео ── -->
+  <section class="section">
+    <div class="section-label">Видео</div>
+    <div class="section-title">Процесс работы</div>
+    <div class="video-links">
+      <a href="https://youtu.be/gitqWymZb3I?si=D_iFgjcTdo_DtGD5" target="_blank" class="video-link">
+        <span>&#9654;</span> Как я делаю 3D-модель памятника
+      </a>
+      <a href="https://youtu.be/vaxZ9yhS-w4?si=PpxFrS7foMEymR4q" target="_blank" class="video-link">
+        <span>&#9654;</span> Моделирование Слободского некрополя
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Команда ── -->
+  <section class="section">
+    <div class="section-label">Команда</div>
+    <div class="section-title">Участники проекта</div>
+    <div class="section-desc">Проект ведётся автором с привлечением консультантов из смежных исследовательских проектов.</div>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">&#9733;</div>
+        <div class="team-info">
+          <h4>Автор проекта</h4>
+          <div class="team-role">Руководитель</div>
+          <p>Полевая работа, архивные исследования, GPS-съёмка, фотофиксация, создание каталога и базы данных, разработка сайта.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">&#9670;</div>
+        <div class="team-info">
+          <h4>Анна Зиганшина</h4>
+          <div class="team-role">Консультант по 3D</div>
+          <p>Методическая помощь по 3D-моделированию. Исследователь проекта «Свод русских надписей». Соавтор статьи о методах документирования надгробий.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">&#9671;</div>
+        <div class="team-info">
+          <h4>Маргарита Глазырина</h4>
+          <div class="team-role">Коллега</div>
+          <p>Лаборант-исследователь ВятГУ. Ведёт параллельный проект по Слободскому кладбищу г. Слободского с 3D-моделированием.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">&#9675;</div>
+        <div class="team-info">
+          <h4>Сообщество ВГД</h4>
+          <div class="team-role">Генеалогия</div>
+          <p>Контакты на Всероссийском генеалогическом древе (ВГД). Помощь с идентификацией фамилий и привязкой к архивным документам.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>Казачий некрополь ст. Убеженской</strong><br>
+      Исследовательский проект · 2025–2026
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="about.html">О проекте</a>
+      <a href="map.html">Карта</a>
+      <a href="catalog.html">Каталог</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script>
+const cont = document.getElementById('timeline');
+
+// Группируем по статусам
+const statusLabels = {done:'Выполнено', active:'В работе', planned:'Впереди'};
+let currentStatus = '';
+
+TIMELINE.forEach(item => {
+  // Добавляем метку зоны при смене статуса
+  if (item.status !== currentStatus) {
+    currentStatus = item.status;
+    const label = document.createElement('div');
+    label.className = 'tl-zone-label ' + item.status;
+    label.innerHTML = `<span>${statusLabels[item.status]}</span>`;
+    cont.appendChild(label);
+  }
+
+  const el = document.createElement('div');
+  el.className = 'tl-item ' + item.status;
+  el.innerHTML = `
+    <div class="tl-dot"></div>
+    <div class="tl-date">${item.date}</div>
+    <div class="tl-title">${item.title}</div>
+    <div class="tl-desc">${item.desc}</div>
+  `;
+  cont.appendChild(el);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Каталог — Казачий некрополь ст. Убеженской</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.catalog-stats {
+  display: flex;
+  gap: 1.5rem;
+  padding: .75rem 0;
+  font-size: .82rem;
+  color: var(--mt);
+  flex-wrap: wrap;
+}
+.catalog-stats strong { color: var(--tx); font-weight: 500; }
+.search-box {
+  width: 100%;
+  max-width: 320px;
+  font-family: var(--fb);
+  font-size: .85rem;
+  padding: .45rem .75rem;
+  border: 1px solid var(--bd);
+  border-radius: 3px;
+  background: var(--sf);
+  color: var(--tx);
+  outline: none;
+  transition: border-color .2s;
+}
+.search-box:focus { border-color: var(--ac); }
+.search-box::placeholder { color: var(--mt); }
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--mt);
+  font-size: .9rem;
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Некрополь Убеженской</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Меню">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="about.html">О проекте</a></li>
+      <li><a href="map.html">Карта</a></li>
+      <li><a href="catalog.html" class="active">Каталог</a></li>
+      <li><a href="timeline.html">Хроника</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <section class="section" style="border-top:none; padding-top:2rem; padding-bottom:0;">
+    <div class="section-label">Каталог</div>
+    <div class="section-title">Объекты некрополя</div>
+    <div class="section-desc">Карточки всех зафиксированных надгробий. Фильтрация по типу формы и наличию данных.</div>
+
+    <div class="catalog-stats">
+      <span>Всего: <strong id="total-count"></strong></span>
+      <span>С данными: <strong id="ok-count"></strong></span>
+      <span>Требуют уточнения: <strong id="pr-count"></strong></span>
+      <span>Показано: <strong id="shown-count"></strong></span>
+    </div>
+  </section>
+
+  <div class="filters-bar">
+    <span class="label">Статус:</span>
+    <button class="filter-btn on" data-filter="status" data-val="all">Все</button>
+    <button class="filter-btn" data-filter="status" data-val="ok">С данными</button>
+    <button class="filter-btn" data-filter="status" data-val="pr">Требуют уточнения</button>
+  </div>
+
+  <div class="filters-bar" style="border-bottom:none; padding-top:.5rem;">
+    <span class="label">Форма:</span>
+    <button class="filter-btn on" data-filter="form" data-val="all">Все формы</button>
+    <button class="filter-btn" data-filter="form" data-val="lapchaty">Лапчатый</button>
+    <button class="filter-btn" data-filter="form" data-val="georgievsky">Георгиевский</button>
+    <button class="filter-btn" data-filter="form" data-val="plita">Плита</button>
+    <button class="filter-btn" data-filter="form" data-val="pryamoy">Прямой</button>
+    <button class="filter-btn" data-filter="form" data-val="kokoshnik">С кокошником</button>
+    <button class="filter-btn" data-filter="form" data-val="metallic">Металлический</button>
+    <button class="filter-btn" data-filter="form" data-val="opalubka">С опалубкой</button>
+    <button class="filter-btn" data-filter="form" data-val="multi">Многоступенчатый</button>
+  </div>
+
+  <div style="padding:.75rem 0;">
+    <input type="text" class="search-box" id="search" placeholder="Поиск по имени, описанию, номеру...">
+  </div>
+
+  <div class="catalog-grid" id="catalog"></div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>Казачий некрополь ст. Убеженской</strong><br>
+      Исследовательский проект · 2025–2026
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Главная</a>
+      <a href="about.html">О проекте</a>
+      <a href="map.html">Карта</a>
+      <a href="timeline.html">Хроника</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script>
+document.getElementById('total-count').textContent = totalCount;
+document.getElementById('ok-count').textContent = okCount;
+document.getElementById('pr-count').textContent = prCount;
+
+let statusFilter = 'all';
+let formFilter = 'all';
+let searchQuery = '';
+
+function renderCards() {
+  const cont = document.getElementById('catalog');
+  cont.innerHTML = '';
+
+  let filtered = DATA.filter(d => {
+    if (statusFilter === 'ok' && d.p) return false;
+    if (statusFilter === 'pr' && !d.p) return false;
+    if (formFilter !== 'all' && d.formType !== formFilter) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      const txt = [d.name, d.comment, d.person, d.reason, String(d.n)].filter(Boolean).join(' ').toLowerCase();
+      if (!txt.includes(q)) return false;
+    }
+    return true;
+  });
+
+  // Сортируем: сначала с данными, затем по номеру
+  filtered.sort((a,b) => {
+    if (a.p && !b.p) return 1;
+    if (!a.p && b.p) return -1;
+    return a.n - b.n;
+  });
+
+  document.getElementById('shown-count').textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    cont.innerHTML = '<div class="no-results">Нет объектов, соответствующих фильтрам</div>';
+    return;
+  }
+
+  filtered.forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'obj-card';
+    card.innerHTML = `
+      <div class="obj-card-img">
+        <div class="obj-card-num ${d.p ? 'pr' : 'ok'}">${d.n}</div>
+        <img src="${photoUrl(d.n)}" alt="Объект №${d.n}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none">${d.photos ? 'Фото не загружено' : 'Фото не добавлено'}</div>
+      </div>
+      <div class="obj-card-body">
+        <div class="obj-card-title">${d.name || 'Не описан'}</div>
+        ${d.comment ? '<div class="obj-card-comment">' + d.comment + '</div>' : ''}
+        ${d.reason ? '<div class="obj-card-warn">' + d.reason + '</div>' : ''}
+        ${d.person ? '<div style="font-size:.8rem;color:var(--ac);margin-bottom:.4rem;">&#9733; ' + d.person + (d.date ? ' · ' + d.date : '') + '</div>' : ''}
+        <div class="obj-card-meta">
+          <span class="obj-card-coords">${d.lat.toFixed(6)}°N, ${d.lon.toFixed(6)}°E</span>
+          ${d.photos ? '<a class="obj-card-link" href="' + d.photos + '" target="_blank">Фото &#8599;</a>' : ''}
+        </div>
+      </div>
+    `;
+    cont.appendChild(card);
+  });
+}
+
+// Фильтры
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.dataset.filter;
+    // Снимаем active в группе
+    document.querySelectorAll(`.filter-btn[data-filter="${group}"]`).forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+
+    if (group === 'status') statusFilter = btn.dataset.val;
+    if (group === 'form') formFilter = btn.dataset.val;
+    renderCards();
+  });
+});
+
+// Поиск
+document.getElementById('search').addEventListener('input', e => {
+  searchQuery = e.target.value.trim();
+  renderCards();
+});
+
+renderCards();
+</script>
+</body>
+</html>
