@@ -6,6 +6,7 @@
 <title>О проекте — Казачий некрополь ст. Убеженской</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
+/* Сетка двух колонок — выравнивание по верху */
 .section-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -13,6 +14,13 @@
   align-items: start;
   margin-top: 2rem;
 }
+/* Текстовые блоки */
+.prose { font-size: .95rem; line-height: 1.65; color: var(--tx-dim, #c8c4bc); }
+.prose p + p { margin-top: 1em; }
+.prose strong { color: var(--tx); font-weight: 500; }
+.section-desc { font-size: .95rem; color: var(--mt); line-height: 1.55; max-width: 640px; }
+.section-desc a { border-bottom: 1px solid rgba(196,162,101,.3); }
+/* Карточки справа */
 .method-card {
   background: var(--sf);
   border: 1px solid var(--bd);
@@ -21,20 +29,55 @@
   margin-bottom: 1rem;
 }
 .method-card:last-child { margin-bottom: 0; }
-.method-card h4 {
-  font-family: var(--fd);
-  font-size: .95rem;
-  font-weight: 600;
-  color: var(--ac);
-  margin-bottom: .5rem;
+.method-card h4 { font-family: var(--fd); font-size: .95rem; font-weight: 600; color: var(--ac); margin-bottom: .5rem; }
+.method-card p { font-size: .85rem; color: var(--mt); line-height: 1.5; }
+/* Аналоги */
+.analogues {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
-.method-card p {
-  font-size: .85rem;
-  color: var(--mt);
-  line-height: 1.5;
+.analogue-card {
+  background: var(--sf);
+  border: 1px solid var(--bd);
+  border-radius: 4px;
+  padding: 1.25rem;
+  transition: border-color .2s;
 }
+.analogue-card:hover { border-color: var(--bd-light, #4a4a44); }
+.analogue-card h4 { font-family: var(--fd); font-size: .95rem; font-weight: 600; margin-bottom: .4rem; }
+.analogue-card p { font-size: .82rem; color: var(--mt); line-height: 1.45; margin-bottom: .5rem; }
+.analogue-links { display: flex; flex-wrap: wrap; gap: .5rem; }
+.analogue-links a {
+  font-size: .75rem; color: var(--ac);
+  border: 1px solid rgba(196,162,101,.25);
+  padding: .2rem .55rem; border-radius: 2px; transition: all .2s;
+}
+.analogue-links a:hover { background: var(--ac-dim, rgba(196,162,101,.15)); border-color: var(--ac); opacity: 1; }
+/* Источники */
+.sources-list { margin-top: 1.5rem; }
+.source-item {
+  display: flex; align-items: baseline; gap: .75rem;
+  padding: .65rem 0; border-bottom: 1px solid rgba(58,58,54,.5); font-size: .85rem;
+}
+.source-item:last-child { border-bottom: none; }
+.source-type {
+  font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--bg); background: var(--ok); padding: .15rem .4rem; border-radius: 2px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.source-type.method { background: var(--ac); }
+.source-type.article { background: var(--blue, #5b7fa5); }
+.source-type.book { background: var(--green, #6b8f71); }
+.source-type.blog { background: var(--mt); }
+.source-title { color: var(--tx-dim, #c8c4bc); }
+.source-title a { color: var(--ac); border-bottom: 1px solid rgba(196,162,101,.2); }
+.source-title a:hover { border-bottom-color: var(--ac); }
+/* Адаптивность */
 @media (max-width: 768px) {
-  .section-grid { grid-template-columns: 1fr; }
+  .section-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .analogues { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -95,7 +138,7 @@
         <p><strong>Архивная работа:</strong> сопоставление имён на надгробиях с исповедными росписями 1827 года и метрическими книгами. 4 фамилии подтверждены документально: Мануилов, Кабельков, Сонин, Крамаров.</p>
       </div>
       <div>
-        <div class="method-card" style="margin-top:0">
+        <div class="method-card">
           <h4>Мероприятие 1</h4>
           <p><strong>Agisoft Metashape (Fotoscan)</strong> — программа фотограмметрии. 30–50 снимков ортогонально поверхности камня. Результат — 3D-модель и карта высот, на которой видны надписи, не различимые глазом.</p>
           <p style="margin-top:.5rem">Методика рекомендована <strong>А. А. Зиганшиной</strong> из проекта «Свод русских надписей». В этом проекте аналогичный подход применяется к памятникам с 1680 года.</p>
