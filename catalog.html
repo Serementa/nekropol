@@ -37,6 +37,175 @@
   color: var(--mt);
   font-size: .9rem;
 }
+.obj-card { cursor: pointer; }
+.obj-card-img {
+  width: 100%;
+  height: 220px;
+  background: var(--bg-deep);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.obj-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--bg-deep);
+}
+
+/* ── Галерея-лайтбокс ── */
+.gallery-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10,10,8,.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-overlay.open { display: flex; }
+
+.gallery-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--mt);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: color .2s;
+  line-height: 1;
+}
+.gallery-close:hover { color: var(--tx); }
+
+.gallery-header {
+  text-align: center;
+  padding: 1rem 1.5rem .5rem;
+  max-width: 700px;
+}
+.gallery-header .gh-num {
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--ac);
+  margin-bottom: .25rem;
+}
+.gallery-header .gh-title {
+  font-family: var(--fd);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: .25rem;
+}
+.gallery-header .gh-comment {
+  font-size: .85rem;
+  color: var(--mt);
+  line-height: 1.4;
+}
+.gallery-header .gh-coords {
+  font-size: .72rem;
+  font-family: 'SF Mono','Consolas', monospace;
+  color: var(--mt);
+  margin-top: .35rem;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.gallery-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  padding: .5rem 3rem;
+  position: relative;
+  min-height: 0;
+}
+.gallery-main img {
+  max-width: 100%;
+  max-height: 55vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.5);
+  transition: opacity .25s;
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(37,37,34,.8);
+  border: 1px solid var(--bd);
+  color: var(--tx);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all .2s;
+  z-index: 5;
+}
+.gallery-arrow:hover { background: var(--sf); border-color: var(--ac); }
+.gallery-arrow.left { left: .5rem; }
+.gallery-arrow.right { right: .5rem; }
+.gallery-arrow.hidden { opacity: 0; pointer-events: none; }
+
+.gallery-strip {
+  display: flex;
+  gap: .5rem;
+  padding: .75rem 1.5rem 1.25rem;
+  overflow-x: auto;
+  max-width: 100%;
+  justify-content: center;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bd) transparent;
+}
+.gallery-strip::-webkit-scrollbar { height: 4px; }
+.gallery-strip::-webkit-scrollbar-track { background: transparent; }
+.gallery-strip::-webkit-scrollbar-thumb { background: var(--bd); border-radius: 2px; }
+
+.gallery-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: .5;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+.gallery-thumb:hover { opacity: .8; }
+.gallery-thumb.active { border-color: var(--ac); opacity: 1; }
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-counter {
+  font-size: .75rem;
+  color: var(--mt);
+  text-align: center;
+  padding-bottom: .5rem;
+}
+
+@media (max-width: 600px) {
+  .gallery-main { padding: .5rem 2.5rem; }
+  .gallery-main img { max-height: 45vh; }
+  .gallery-arrow { width: 36px; height: 36px; font-size: 1rem; }
+  .gallery-thumb { width: 48px; height: 48px; }
+}
 </style>
 </head>
 <body>
@@ -56,12 +225,10 @@
 </nav>
 
 <div class="wrap">
-
   <section class="section" style="border-top:none; padding-top:2rem; padding-bottom:0;">
     <div class="section-label">Каталог</div>
     <div class="section-title">Объекты некрополя</div>
-    <div class="section-desc">Карточки всех зафиксированных надгробий. Фильтрация по типу формы и наличию данных.</div>
-
+    <div class="section-desc">Нажмите на карточку, чтобы открыть галерею фотографий.</div>
     <div class="catalog-stats">
       <span>Всего: <strong id="total-count"></strong></span>
       <span>С данными: <strong id="ok-count"></strong></span>
@@ -76,7 +243,6 @@
     <button class="filter-btn" data-filter="status" data-val="ok">С данными</button>
     <button class="filter-btn" data-filter="status" data-val="pr">Требуют уточнения</button>
   </div>
-
   <div class="filters-bar" style="border-bottom:none; padding-top:.5rem;">
     <span class="label">Форма:</span>
     <button class="filter-btn on" data-filter="form" data-val="all">Все формы</button>
@@ -89,13 +255,23 @@
     <button class="filter-btn" data-filter="form" data-val="opalubka">С опалубкой</button>
     <button class="filter-btn" data-filter="form" data-val="multi">Многоступенчатый</button>
   </div>
-
   <div style="padding:.75rem 0;">
     <input type="text" class="search-box" id="search" placeholder="Поиск по имени, описанию, номеру...">
   </div>
-
   <div class="catalog-grid" id="catalog"></div>
+</div>
 
+<!-- Лайтбокс -->
+<div class="gallery-overlay" id="gallery">
+  <button class="gallery-close" id="gallery-close">&times;</button>
+  <div class="gallery-header" id="gallery-header"></div>
+  <div class="gallery-main" id="gallery-main">
+    <button class="gallery-arrow left" id="arrow-left">&#8249;</button>
+    <img id="gallery-img" src="" alt="">
+    <button class="gallery-arrow right" id="arrow-right">&#8250;</button>
+  </div>
+  <div class="gallery-counter" id="gallery-counter"></div>
+  <div class="gallery-strip" id="gallery-strip"></div>
 </div>
 
 <footer class="footer">
@@ -123,24 +299,137 @@ let statusFilter = 'all';
 let formFilter = 'all';
 let searchQuery = '';
 
+function allPhotoUrls(n) {
+  const pad = String(n).padStart(2, '0');
+  const urls = [];
+  for (let i = 1; i <= 15; i++) {
+    urls.push(GITHUB + '/photos/obj_' + pad + '/' + String(i).padStart(2, '0') + '.jpg');
+  }
+  return urls;
+}
+
+// ── Галерея ──
+const galleryEl = document.getElementById('gallery');
+const galleryImg = document.getElementById('gallery-img');
+const galleryHeader = document.getElementById('gallery-header');
+const galleryStrip = document.getElementById('gallery-strip');
+const galleryCounter = document.getElementById('gallery-counter');
+const arrowLeft = document.getElementById('arrow-left');
+const arrowRight = document.getElementById('arrow-right');
+let galleryPhotos = [];
+let galleryIndex = 0;
+
+function openGallery(d) {
+  galleryHeader.innerHTML =
+    '<div class="gh-num">Объект №' + d.n + '</div>' +
+    '<div class="gh-title">' + (d.name || 'Не описан') + '</div>' +
+    (d.comment ? '<div class="gh-comment">' + d.comment + '</div>' : '') +
+    '<div class="gh-coords">' + d.lat.toFixed(6) + '°N, ' + d.lon.toFixed(6) + '°E</div>';
+
+  galleryPhotos = [];
+  galleryIndex = 0;
+  galleryStrip.innerHTML = '';
+  galleryCounter.textContent = 'Загрузка фотографий...';
+  galleryImg.src = '';
+
+  var candidates = allPhotoUrls(d.n);
+  var checked = 0;
+
+  candidates.forEach(function(url, i) {
+    var img = new Image();
+    img.onload = function() {
+      galleryPhotos.push({ url: url, order: i });
+      checked++;
+      if (checked === candidates.length) finishLoading();
+    };
+    img.onerror = function() {
+      checked++;
+      if (checked === candidates.length) finishLoading();
+    };
+    img.src = url;
+  });
+
+  function finishLoading() {
+    galleryPhotos.sort(function(a, b) { return a.order - b.order; });
+    galleryPhotos = galleryPhotos.map(function(p) { return p.url; });
+
+    if (galleryPhotos.length === 0) {
+      galleryCounter.textContent = 'Фотографии пока не загружены в репозиторий';
+      galleryStrip.innerHTML = '';
+      updateArrows();
+      return;
+    }
+    showPhoto(0);
+    buildStrip();
+  }
+
+  galleryEl.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function showPhoto(idx) {
+  if (!galleryPhotos.length) return;
+  galleryIndex = idx;
+  galleryImg.src = galleryPhotos[idx];
+  galleryCounter.textContent = (idx + 1) + ' / ' + galleryPhotos.length;
+  updateArrows();
+  var thumbs = document.querySelectorAll('.gallery-thumb');
+  thumbs.forEach(function(t, i) {
+    t.classList.toggle('active', i === idx);
+  });
+}
+
+function updateArrows() {
+  arrowLeft.classList.toggle('hidden', galleryIndex <= 0 || galleryPhotos.length === 0);
+  arrowRight.classList.toggle('hidden', galleryIndex >= galleryPhotos.length - 1 || galleryPhotos.length === 0);
+}
+
+function buildStrip() {
+  galleryStrip.innerHTML = '';
+  galleryPhotos.forEach(function(url, i) {
+    var thumb = document.createElement('div');
+    thumb.className = 'gallery-thumb' + (i === 0 ? ' active' : '');
+    thumb.innerHTML = '<img src="' + url + '" alt="">';
+    thumb.addEventListener('click', function() { showPhoto(i); });
+    galleryStrip.appendChild(thumb);
+  });
+}
+
+function closeGallery() {
+  galleryEl.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('gallery-close').addEventListener('click', closeGallery);
+galleryEl.addEventListener('click', function(e) { if (e.target === galleryEl) closeGallery(); });
+arrowLeft.addEventListener('click', function(e) { e.stopPropagation(); if (galleryIndex > 0) showPhoto(galleryIndex - 1); });
+arrowRight.addEventListener('click', function(e) { e.stopPropagation(); if (galleryIndex < galleryPhotos.length - 1) showPhoto(galleryIndex + 1); });
+
+document.addEventListener('keydown', function(e) {
+  if (!galleryEl.classList.contains('open')) return;
+  if (e.key === 'Escape') closeGallery();
+  if (e.key === 'ArrowLeft' && galleryIndex > 0) showPhoto(galleryIndex - 1);
+  if (e.key === 'ArrowRight' && galleryIndex < galleryPhotos.length - 1) showPhoto(galleryIndex + 1);
+});
+
+// ── Карточки ──
 function renderCards() {
-  const cont = document.getElementById('catalog');
+  var cont = document.getElementById('catalog');
   cont.innerHTML = '';
 
-  let filtered = DATA.filter(d => {
+  var filtered = DATA.filter(function(d) {
     if (statusFilter === 'ok' && d.p) return false;
     if (statusFilter === 'pr' && !d.p) return false;
     if (formFilter !== 'all' && d.formType !== formFilter) return false;
     if (searchQuery) {
-      const q = searchQuery.toLowerCase();
-      const txt = [d.name, d.comment, d.person, d.reason, String(d.n)].filter(Boolean).join(' ').toLowerCase();
-      if (!txt.includes(q)) return false;
+      var q = searchQuery.toLowerCase();
+      var txt = [d.name, d.comment, d.person, d.reason, String(d.n)].filter(Boolean).join(' ').toLowerCase();
+      if (txt.indexOf(q) === -1) return false;
     }
     return true;
   });
 
-  // Сортируем: сначала с данными, затем по номеру
-  filtered.sort((a,b) => {
+  filtered.sort(function(a, b) {
     if (a.p && !b.p) return 1;
     if (!a.p && b.p) return -1;
     return a.n - b.n;
@@ -153,46 +442,42 @@ function renderCards() {
     return;
   }
 
-  filtered.forEach(d => {
-    const card = document.createElement('div');
+  filtered.forEach(function(d) {
+    var card = document.createElement('div');
     card.className = 'obj-card';
-    card.innerHTML = `
-      <div class="obj-card-img">
-        <div class="obj-card-num ${d.p ? 'pr' : 'ok'}">${d.n}</div>
-        <img src="${photoUrl(d.n)}" alt="Объект №${d.n}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="placeholder" style="display:none">${d.photos ? 'Фото не загружено' : 'Фото не добавлено'}</div>
-      </div>
-      <div class="obj-card-body">
-        <div class="obj-card-title">${d.name || 'Не описан'}</div>
-        ${d.comment ? '<div class="obj-card-comment">' + d.comment + '</div>' : ''}
-        ${d.reason ? '<div class="obj-card-warn">' + d.reason + '</div>' : ''}
-        ${d.person ? '<div style="font-size:.8rem;color:var(--ac);margin-bottom:.4rem;">&#9733; ' + d.person + (d.date ? ' · ' + d.date : '') + '</div>' : ''}
-        <div class="obj-card-meta">
-          <span class="obj-card-coords">${d.lat.toFixed(6)}°N, ${d.lon.toFixed(6)}°E</span>
-          ${d.photos ? '<a class="obj-card-link" href="' + d.photos + '" target="_blank">Фото &#8599;</a>' : ''}
-        </div>
-      </div>
-    `;
+    card.addEventListener('click', function() { openGallery(d); });
+    card.innerHTML =
+      '<div class="obj-card-img">' +
+        '<div class="obj-card-num ' + (d.p ? 'pr' : 'ok') + '">' + d.n + '</div>' +
+        '<img src="' + photoUrl(d.n) + '" alt="Объект №' + d.n + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
+        '<div class="placeholder" style="display:none">Нажмите для просмотра</div>' +
+      '</div>' +
+      '<div class="obj-card-body">' +
+        '<div class="obj-card-title">' + (d.name || 'Не описан') + '</div>' +
+        (d.comment ? '<div class="obj-card-comment">' + d.comment + '</div>' : '') +
+        (d.reason ? '<div class="obj-card-warn">' + d.reason + '</div>' : '') +
+        (d.person ? '<div style="font-size:.8rem;color:var(--ac);margin-bottom:.4rem;">&#9733; ' + d.person + (d.date ? ' &middot; ' + d.date : '') + '</div>' : '') +
+        '<div class="obj-card-meta">' +
+          '<span class="obj-card-coords">' + d.lat.toFixed(6) + '°N, ' + d.lon.toFixed(6) + '°E</span>' +
+          '<span style="font-size:.75rem;color:var(--ac);">Открыть &#8594;</span>' +
+        '</div>' +
+      '</div>';
     cont.appendChild(card);
   });
 }
 
-// Фильтры
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const group = btn.dataset.filter;
-    // Снимаем active в группе
-    document.querySelectorAll(`.filter-btn[data-filter="${group}"]`).forEach(b => b.classList.remove('on'));
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var group = btn.dataset.filter;
+    document.querySelectorAll('.filter-btn[data-filter="' + group + '"]').forEach(function(b) { b.classList.remove('on'); });
     btn.classList.add('on');
-
     if (group === 'status') statusFilter = btn.dataset.val;
     if (group === 'form') formFilter = btn.dataset.val;
     renderCards();
   });
 });
 
-// Поиск
-document.getElementById('search').addEventListener('input', e => {
+document.getElementById('search').addEventListener('input', function(e) {
   searchQuery = e.target.value.trim();
   renderCards();
 });
