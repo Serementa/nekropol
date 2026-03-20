@@ -24,9 +24,10 @@
 </nav>
 
 <!-- ── Герой ── -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
+<section class="hero" style="position:relative; min-height:85vh; display:flex; align-items:center; justify-content:center; text-align:center; overflow:hidden;">
+  <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(19,19,17,.65) 0%, rgba(19,19,17,.25) 40%, rgba(19,19,17,.25) 60%, rgba(26,26,24,1) 100%), url('photos/hero.jpg') center/cover no-repeat; z-index:0;"></div>
+  <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(19,19,17,.7) 0%, rgba(19,19,17,.4) 40%, rgba(19,19,17,.5) 60%, rgba(26,26,24,.95) 100%); z-index:1;"></div>
+  <div class="hero-content" style="position:relative; z-index:2; max-width:720px; padding:2rem 1.5rem;">
     <span class="hero-badge">Исследовательский проект · 2025–2026</span>
     <h1>Казачий некрополь<br>ст. Убеженской</h1>
     <p class="hero-sub">Первый в России системный проект по документированию и сохранению казачьего некрополя. Станица Убеженская, Успенский район, Краснодарский край.</p>
@@ -59,7 +60,6 @@
 <!-- ── Тизеры разделов ── -->
 <div class="wrap">
   <section class="section">
-    <div class="section-label">Разделы проекта</div>
     <div class="section-title">Что внутри</div>
     <div class="section-desc">Проект объединяет полевую работу, архивные исследования, цифровую картографию и 3D-моделирование надгробий.</div>
 
@@ -95,40 +95,10 @@
 <!-- ── Персоналии ── -->
 <div class="wrap">
   <section class="section">
-    <div class="section-label">Идентифицированные имена</div>
     <div class="section-title">Люди за камнем</div>
     <div class="section-desc">Благодаря архивной работе с исповедными росписями 1827 года и метрическими книгами удалось установить 11 имён. 4 фамилии подтверждены документально.</div>
 
     <div class="persons-grid" id="persons"></div>
-  </section>
-</div>
-
-<!-- ── Методология ── -->
-<div class="wrap">
-  <section class="section">
-    <div class="section-label">Технология</div>
-    <div class="section-title">Как мы читаем стёртые надписи</div>
-    <div class="section-grid">
-      <div class="prose">
-        <p>Многие надписи на каменных крестах XIX века стёрты временем настолько, что не читаются визуально. Но методология 3D-моделирования через <strong>Agisoft Metashape</strong> позволяет восстановить их через карту высот рельефа.</p>
-        <p>Методика разработана в рамках проекта <a href="https://cir.rssda.su/" target="_blank" rel="noopener">«Свод русских надписей»</a> и применяется для памятников даже XVII века. По рекомендации <strong>А. А. Зиганшиной</strong>, мы адаптируем этот подход для казачьих надгробий Убеженской.</p>
-        <p>Процесс: 30–50 ортогональных снимков каждого объекта &rarr; построение 3D-модели &rarr; генерация карты высот &rarr; чтение надписей в рельефе поверхности.</p>
-      </div>
-      <div>
-        <div class="method-card">
-          <h4>Agisoft Metashape</h4>
-          <p>Программа фотограмметрии для построения 3D-моделей по фотографиям. Позволяет создать карту высот, на которой видны рельефные надписи, невидимые невооружённым глазом.</p>
-        </div>
-        <div class="method-card">
-          <h4>Статья Зиганшиной А. А. и Дынина М. Д.</h4>
-          <p>«Документирование надгробия: современные методы» — обоснование применения 3D-моделирования для чтения надписей на исторических надгробиях.</p>
-        </div>
-        <div class="method-card">
-          <h4>Видео о процессе</h4>
-          <p><a href="https://youtu.be/gitqWymZb3I?si=D_iFgjcTdo_DtGD5" target="_blank" rel="noopener">Как я делаю 3D-модель</a> · <a href="https://youtu.be/vaxZ9yhS-w4?si=PpxFrS7foMEymR4q" target="_blank" rel="noopener">Моделирование Слободского некрополя</a></p>
-        </div>
-      </div>
-    </div>
   </section>
 </div>
 
