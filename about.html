@@ -6,7 +6,7 @@
 <title>О проекте — Казачий некрополь ст. Убеженской</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
-/* Сетка двух колонок — выравнивание по верху */
+/* Сетка двух колонок */
 .section-grid {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
@@ -15,72 +15,60 @@
   align-content: start !important;
   margin-top: 2rem !important;
 }
-.section-grid > div {
-  align-self: start !important;
-}
-/* Текстовые блоки */
+.section-grid > div { align-self: start !important; }
+.section-desc { font-size: .95rem; color: var(--mt); line-height: 1.55; max-width: 700px; }
 .prose { font-size: .95rem; line-height: 1.65; color: var(--tx-dim, #c8c4bc); }
 .prose p + p { margin-top: 1em; }
 .prose strong { color: var(--tx); font-weight: 500; }
-.section-desc { font-size: .95rem; color: var(--mt); line-height: 1.55; max-width: 640px; }
-.section-desc a { border-bottom: 1px solid rgba(196,162,101,.3); }
-/* Карточки справа */
+.prose h4 { font-family: var(--fd); font-size: 1.1rem; font-weight: 600; margin: 2rem 0 .6rem; color: var(--tx); }
+.prose h4:first-child { margin-top: 0; }
+/* Карточки */
 .method-card {
-  background: var(--sf);
-  border: 1px solid var(--bd);
-  border-radius: 4px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
+  background: var(--sf); border: 1px solid var(--bd); border-radius: 4px;
+  padding: 1.5rem; margin-bottom: 1rem;
 }
 .method-card:last-child { margin-bottom: 0; }
 .method-card h4 { font-family: var(--fd); font-size: .95rem; font-weight: 600; color: var(--ac); margin-bottom: .5rem; }
 .method-card p { font-size: .85rem; color: var(--mt); line-height: 1.5; }
 /* Аналоги */
-.analogues {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-.analogue-card {
-  background: var(--sf);
-  border: 1px solid var(--bd);
-  border-radius: 4px;
-  padding: 1.25rem;
-  transition: border-color .2s;
-}
+.analogues { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.analogue-card { background: var(--sf); border: 1px solid var(--bd); border-radius: 4px; padding: 1.25rem; transition: border-color .2s; }
 .analogue-card:hover { border-color: var(--bd-light, #4a4a44); }
 .analogue-card h4 { font-family: var(--fd); font-size: .95rem; font-weight: 600; margin-bottom: .4rem; }
 .analogue-card p { font-size: .82rem; color: var(--mt); line-height: 1.45; margin-bottom: .5rem; }
 .analogue-links { display: flex; flex-wrap: wrap; gap: .5rem; }
-.analogue-links a {
-  font-size: .75rem; color: var(--ac);
-  border: 1px solid rgba(196,162,101,.25);
-  padding: .2rem .55rem; border-radius: 2px; transition: all .2s;
+.analogue-links a { font-size: .75rem; color: var(--ac); border: 1px solid rgba(196,162,101,.25); padding: .2rem .55rem; border-radius: 2px; transition: all .2s; }
+.analogue-links a:hover { background: rgba(196,162,101,.15); border-color: var(--ac); opacity: 1; }
+/* СМИ */
+.media-list { margin-top: 1.5rem; }
+.media-item {
+  background: var(--sf); border: 1px solid var(--bd); border-radius: 4px;
+  padding: 1.25rem 1.5rem; margin-bottom: 1rem; transition: border-color .2s;
 }
-.analogue-links a:hover { background: var(--ac-dim, rgba(196,162,101,.15)); border-color: var(--ac); opacity: 1; }
+.media-item:last-child { margin-bottom: 0; }
+.media-item:hover { border-color: var(--bd-light, #4a4a44); }
+.media-item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .4rem; flex-wrap: wrap; }
+.media-item h4 { font-family: var(--fd); font-size: .95rem; font-weight: 600; line-height: 1.3; }
+.media-item h4 a { color: var(--tx); border-bottom: 1px solid rgba(196,162,101,.3); }
+.media-item h4 a:hover { color: var(--ac); border-bottom-color: var(--ac); opacity: 1; }
+.media-date { font-size: .72rem; font-weight: 600; color: var(--mt); white-space: nowrap; text-transform: uppercase; letter-spacing: .05em; }
+.media-source { font-size: .78rem; color: var(--ac); margin-bottom: .4rem; }
+.media-item p { font-size: .85rem; color: var(--mt); line-height: 1.5; }
 /* Источники */
 .sources-list { margin-top: 1.5rem; }
-.source-item {
-  display: flex; align-items: baseline; gap: .75rem;
-  padding: .65rem 0; border-bottom: 1px solid rgba(58,58,54,.5); font-size: .85rem;
-}
+.source-item { display: flex; align-items: baseline; gap: .75rem; padding: .65rem 0; border-bottom: 1px solid rgba(58,58,54,.5); font-size: .85rem; }
 .source-item:last-child { border-bottom: none; }
-.source-type {
-  font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em;
-  color: var(--bg); background: var(--ok); padding: .15rem .4rem; border-radius: 2px;
-  white-space: nowrap; flex-shrink: 0;
-}
+.source-type { font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--bg); background: var(--ok); padding: .15rem .4rem; border-radius: 2px; white-space: nowrap; flex-shrink: 0; }
 .source-type.method { background: var(--ac); }
-.source-type.article { background: var(--blue, #5b7fa5); }
-.source-type.book { background: var(--green, #6b8f71); }
+.source-type.article { background: #5b7fa5; }
+.source-type.book { background: #6b8f71; }
 .source-type.blog { background: var(--mt); }
 .source-title { color: var(--tx-dim, #c8c4bc); }
 .source-title a { color: var(--ac); border-bottom: 1px solid rgba(196,162,101,.2); }
 .source-title a:hover { border-bottom-color: var(--ac); }
-/* Адаптивность */
+/* Адаптив */
 @media (max-width: 768px) {
-  .section-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .section-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
   .analogues { grid-template-columns: 1fr; }
 }
 </style>
@@ -103,31 +91,30 @@
 
 <div class="wrap">
 
-  <!-- ── Заголовок ── -->
+  <!-- ── Введение ── -->
   <section class="section" style="border-top:none; padding-top:3rem;">
-    <div class="section-title">Зачем мы это делаем</div>
-    <div class="section-desc">Каменные кресты казачьих некрополей юга России разрушаются. Наш проект — первая попытка системно зафиксировать, каталогизировать и сохранить цифровыми методами наследие станицы Убеженской.</div>
-  </section>
+    <div class="section-title">Казачий некрополь станицы Убеженской</div>
+    <div class="prose" style="max-width:800px;">
+      <p>Станица Убеженская расположена на правом берегу Кубани, у подножия Армавирского нагорья, в Успенском районе Краснодарского края. Своё название она получила от беглых крепостных крестьян из центральных областей России, которые называли место своего проживания Убежищем. В 1793 году, в ходе осмотра Александром Суворовым кубанского правобережья, поселение получило статус населённого пункта как редут Убежный. В 1794 году девять семей донских казаков, переселённых по государеву велению, переименовали его в станицу Убеженскую.</p>
+      <p>На старом кладбище станицы сохранились каменные кресты и надгробные плиты казаков-старожилов, датируемые концом XVIII — началом XX века. Среди них — надгробный камень одного из первых переселенцев, казака Кобелькова, упомянутого в исповедной росписи 1827 года.</p>
 
-  <!-- ── Проблема ── -->
-  <section class="section">
-    <div class="section-title">Проблема</div>
-    <div class="section-grid">
-      <div class="prose">
-        <p>Каменные кресты у казаков — особые по форме и материалу. Они несут в себе информацию о людях, дизайне, ремесленных традициях целого региона. Но <strong>никакой системной типологии крестов Кубани, Дона и Крыма до сих пор не создано</strong>.</p>
-        <p>Существуют точечные исследования: статья Р. С. Лопина по кладбищу Славянска-на-Кубани, книга И. В. Сапожникова по Одессе, типология А. Л. Потравнова и Т. Ю. Хмельник по Северо-Западу России. Но комплексного подхода к казачьим некрополям не было.</p>
-        <p>Всё, что есть в публичном пространстве, — это <strong>разрозненные посты в блогах</strong> (ЖЖ и т. п.), где люди делятся наблюдениями: «вот такие кресты, всё разрушается». Аналогов нашему системному подходу в России нет.</p>
-      </div>
-      <div>
-        <div class="method-card">
-          <h4>Что теряется</h4>
-          <p>Каменные кресты конца XVIII — начала XX века. Надписи стираются, камни уходят в землю, объекты разрушаются. На кладбище Убеженской более 20 крестов утоплены в грунт на треть и более.</p>
-        </div>
-        <div class="method-card">
-          <h4>Читаемые даты</h4>
-          <p>Диапазон подтверждённых дат: 1882–1915. Но по форме и стилистике многие кресты могут быть значительно старше — конца XVIII века, времени основания станицы.</p>
-        </div>
-      </div>
+      <h4>Пыльные бури и забвение</h4>
+      <p>В 1960-е годы на Успенский район обрушились пыльные бури. Станица, расположенная в так называемом «армавирском коридоре» — природном ветровом тоннеле — пострадала особенно сильно. Некоторые дома заносило пылью по крышу. На кладбище памятники оказались под двухметровым слоем грунта: на поверхности виднелись лишь верхушки крестов. Старинная часть кладбища заросла непроходимыми кустами и была фактически заброшена на десятилетия.</p>
+
+      <h4>Первые находки (2004)</h4>
+      <p>В 2004 году учитель истории местной школы Сергей Александрович Гайдук, ведя историко-краеведческий кружок «Обелиск», обнаружил, что заросший участок на окраине действующего кладбища — это место старинных казачьих захоронений. Была найдена и очищена могильная плита с фамилией «Мануйловы». В школьном музее нашлась фотография этой семьи — так начала восстанавливаться связь между надгробиями и конкретными людьми.</p>
+
+      <h4>Реконструкция (2020–2022)</h4>
+      <p>Став главой Убеженского сельского поселения, Сергей Гайдук инициировал масштабную реконструкцию некрополя. В работах участвовали около 70 потомков казаков — жителей станицы. За два года было поднято из-под земли более 40 надгробий и крестов XVIII–XIX веков. Каждый камень нумеровали. Разрушенные склепы собирали по фрагментам. Выкопанные каменные кресты и плиты устанавливали на залитые бетонные подушки, чтобы предотвратить повторное погружение в грунт.</p>
+      <p>В ходе этих работ атаман Убеженского хуторского казачьего общества Фёдор Медоний обнаружил могилу своего предка — вдовы Харунжевой-Гетмановой (1878 год). На кладбище находится около 1000 захоронений, из которых лишь около 100 оказались на поверхности — остальные по-прежнему под землёй.</p>
+      <p>Историк Александр Лопатин отнёс убеженское кладбище к старообрядческим захоронениям Средней Кубани и отметил наличие кованых крестов — редкость для региона, где железо в XIX веке было дорогим материалом.</p>
+
+      <h4>Проект «Легенды поколений»</h4>
+      <p>С 2020 года Сергей Гайдук ведёт проект «Легенды поколений», объединяющий генеалогические исследования, краеведение и восстановление некрополя. На фестивале «Быть казаком» в Усть-Лабинске (2025) историк Андрей Дюкарев выделил этот проект как пример нового подхода к казачьему наследию.</p>
+
+      <h4>Что было известно к началу 2025 года</h4>
+      <p>К моменту начала систематической работы по оцифровке некрополя на кладбище находились каменные кресты и плиты предположительно XVIII–XIX веков. Более 40 надгробий были подняты из-под земли и установлены на подушки. Идентифицировать удавалось не более шести памятников. Единственная подтверждённая фамилия на плите — Мануйловы. Надгробный камень первого переселенца Кобелькова упоминался как ориентир, но системного каталога не существовало. Никакой типологии крестов, координатной привязки или научного описания объектов не проводилось. Аналогичных системных проектов по казачьим некрополям в России не существовало.</p>
+      <p><strong>Именно с этой точки в 2025 году началась работа по созданию первого систематического каталога, GPS-картирования и научного описания казачьего некрополя станицы Убеженской.</strong></p>
     </div>
   </section>
 
@@ -160,37 +147,34 @@
   <section class="section">
     <div class="section-title">Аналоги и ориентиры</div>
     <div class="section-desc">Проектов по казачьим некрополям в России нет. Но есть проекты по историческим некрополям, которые служат для нас ориентиром.</div>
-
     <div class="analogues">
-      <div class="analogue-card fade-in">
+      <div class="analogue-card">
         <h4>Старое кладбище, г. Таганрог</h4>
-        <p>Наиболее полный российский аналог: сайт, печатный путеводитель, виртуальный тур, 3D-модели 11 объектов, экскурсии, Telegram-канал. 3D-моделирование реализовано при участии А. А. Зиганшиной и поддержке фонда «Внимание».</p>
+        <p>Наиболее полный российский аналог: сайт, печатный путеводитель, виртуальный тур, 3D-модели 11 объектов, экскурсии, Telegram-канал.</p>
         <div class="analogue-links">
           <a href="http://cemetery.su/" target="_blank">Сайт</a>
-          <a href="http://vivaldi.taglib-collection.ru/book/2024/staroe_kladbishche_taganroga.pdf/view/" target="_blank">Путеводитель</a>
           <a href="https://marfano.ru/pltg/" target="_blank">Виртуальный тур</a>
           <a href="https://t.me/cemetery_su/" target="_blank">Telegram</a>
         </div>
       </div>
-      <div class="analogue-card fade-in">
+      <div class="analogue-card">
         <h4>Слободское кладбище, г. Слободской</h4>
-        <p>Печатный каталог с фотографиями. Параллельно идёт работа над 3D-моделями на базе ВятГУ (исследователь — Маргарита Глазырина). Нет собственного сайта, но публикуются статьи и проводятся лекции.</p>
+        <p>Печатный каталог с фотографиями. Работа над 3D-моделями на базе ВятГУ (исследователь — Маргарита Глазырина).</p>
         <div class="analogue-links">
           <a href="https://youtu.be/vaxZ9yhS-w4?si=PpxFrS7foMEymR4q" target="_blank">Видео моделирования</a>
         </div>
       </div>
-      <div class="analogue-card fade-in">
+      <div class="analogue-card">
         <h4>Проект «Свод русских надписей»</h4>
-        <p>Академический проект по сохранению артефактов письменности на надгробиях 1680+ годов. Методология моделирования стала основой для нашего подхода к работе с казачьими крестами.</p>
+        <p>Академический проект по сохранению артефактов письменности на надгробиях 1680+ годов. Методология моделирования стала основой нашего подхода.</p>
         <div class="analogue-links">
           <a href="https://cir.rssda.su/" target="_blank">Сайт проекта</a>
           <a href="https://cir.rssda.su/methodology/" target="_blank">Методология</a>
-          <a href="https://cir.rssda.su/inscriptions/" target="_blank">Примеры объектов</a>
         </div>
       </div>
-      <div class="analogue-card fade-in">
+      <div class="analogue-card">
         <h4>Куяльницкое кладбище, Одесса</h4>
-        <p>Наиболее технически продвинутый зарубежный аналог. Профинансирован Евросоюзом. Включает план кладбища с нанесёнными объектами, 3D-модели, описания и историческую справку. Много крестов, похожих на убеженские по форме.</p>
+        <p>Технически продвинутый зарубежный аналог. Профинансирован ЕС. План кладбища, 3D-модели, описания. Много крестов, похожих на убеженские.</p>
         <div class="analogue-links">
           <a href="https://pixelatedrealities.org/uk/portfolio/czvyntar-sotnykivskoyi-sichi/" target="_blank">Проект</a>
         </div>
@@ -220,11 +204,72 @@
     </div>
   </section>
 
+  <!-- ── СМИ о проекте ── -->
+  <section class="section">
+    <div class="section-title">СМИ о нас</div>
+    <div class="media-list">
+
+      <div class="media-item">
+        <div class="media-item-head">
+          <h4><a href="https://kuban.aif.ru/society/kuban_propitana_istoriey_kak_v_nebolshoy_stanice_hranyat_pamyat_o_predkah" target="_blank" rel="noopener">Кубань пропитана историей. Как в небольшой станице хранят память о предках</a></h4>
+          <span class="media-date">26 августа 2021</span>
+        </div>
+        <div class="media-source">АиФ Краснодар</div>
+        <p>Подробный рассказ о Сергее Гайдуке, истории обнаружения старинного кладбища в 2004 году, находке могильной плиты Мануйловых, пыльных бурях 1960-х. На момент публикации удавалось идентифицировать максимум шесть памятников.</p>
+      </div>
+
+      <div class="media-item">
+        <div class="media-item-head">
+          <h4><a href="https://kuban24.tv/item/v-uspenskom-rajone-rekonstruirovali-starinnoe-kazache-kladbishhe" target="_blank" rel="noopener">В Успенском районе реконструировали старинное казачье кладбище</a></h4>
+          <span class="media-date">26 апреля 2022</span>
+        </div>
+        <div class="media-source">Kuban24.tv (ГТРК «Кубань»)</div>
+        <p>За два года поднято 42 могилы XVIII–XIX веков. Около 70 потомков казаков участвовали в работах. Атаман Фёдор Медоний обнаружил могилу предка — вдовы Харунжевой-Гетмановой (1878 год). Всего на кладбище около 1000 могил.</p>
+      </div>
+
+      <div class="media-item">
+        <div class="media-item-head">
+          <h4><a href="https://news-armavir.ru/2022/04/27/pochemu-istoriki-schitayut-kladbische-forshtadta-istoricheskim-dostoyaniem/" target="_blank" rel="noopener">Почему историки считают кладбище Форштадта историческим достоянием</a></h4>
+          <span class="media-date">27 апреля 2022</span>
+        </div>
+        <div class="media-source">Армавирский собеседник</div>
+        <p>Историк Александр Лопатин упоминает убеженское кладбище как старообрядческое захоронение. Отмечается наличие кованых крестов — редкость для региона.</p>
+      </div>
+
+      <div class="media-item">
+        <div class="media-item-head">
+          <h4><a href="https://www.yuga.ru/blogs/10265.html" target="_blank" rel="noopener">Как прошёл фестиваль «Быть казаком» в Усть-Лабинске</a></h4>
+          <span class="media-date">2025</span>
+        </div>
+        <div class="media-source">Yuga.ru</div>
+        <p>Историк Андрей Дюкарев отмечает проект «Легенды поколений» Сергея Гайдука как пример работы с наследием: генеалогия, краеведение и гражданский активизм в одном живом деле.</p>
+      </div>
+
+      <div class="media-item">
+        <div class="media-item-head">
+          <h4><a href="https://kubnews.ru/turizm/2016/03/02/dolina-vetrov/" target="_blank" rel="noopener">Долина ветров</a></h4>
+          <span class="media-date">2 марта 2016</span>
+        </div>
+        <div class="media-source">Кубанские новости</div>
+        <p>Очерк о станице Убеженской. Описаны пыльные бури конца 1960-х и работа семьи Гайдук по созданию краеведческого музея. Упоминается надгробный камень первого переселенца Кобелькова.</p>
+      </div>
+
+      <div class="media-item">
+        <div class="media-item-head">
+          <h4><a href="https://ubezhenskoe.ru/about/" target="_blank" rel="noopener">Сайт Убеженского сельского поселения</a></h4>
+          <span class="media-date"></span>
+        </div>
+        <div class="media-source">ubezhenskoe.ru</div>
+        <p>Официальная историческая справка о станице. Упоминается, что на местном кладбище сохранился надгробный камень казака-переселенца Кобелькова.</p>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ── Источники ── -->
   <section class="section">
     <div class="section-title">Источники и ссылки</div>
-    <div class="section-desc">Все использованные в проекте источники: научные статьи, книги, проекты-аналоги, методологические материалы.</div>
-
+    <div class="section-desc">Научные статьи, книги и проекты-аналоги, использованные в исследовании.</div>
     <div class="sources-list" id="sources"></div>
   </section>
 
@@ -234,7 +279,7 @@
   <div class="footer-inner">
     <div class="footer-left">
       <strong>Казачий некрополь ст. Убеженской</strong><br>
-      Исследовательский проект · 2025–2026
+      Исследовательский проект · 2004–2026
     </div>
     <div class="footer-links">
       <a href="index.html">Главная</a>
@@ -248,22 +293,22 @@
 <script src="js/data.js"></script>
 <script>
 // Статистика типов
-const typeLabels = {'lapchaty':'Лапчатый крест','georgievsky':'Георгиевский крест','plita':'Плита / камень','kokoshnik':'С «кокошником»','pryamoy':'Прямой крест','metallic':'Металлический','opalubka':'С опалубкой','multi':'Многоступенчатый','other':'Иная форма'};
-const counts = {};
-DATA.filter(d => !d.p && d.formType).forEach(d => { counts[d.formType] = (counts[d.formType]||0)+1; });
-const statsEl = document.getElementById('type-stats');
-statsEl.innerHTML = Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([k,v]) => `${typeLabels[k] || k}: <strong>${v}</strong>`).join(' · ');
+var typeLabels = {'lapchaty':'Лапчатый крест','georgievsky':'Георгиевский крест','plita':'Плита / камень','kokoshnik':'С кокошником','pryamoy':'Прямой крест','metallic':'Металлический','opalubka':'С опалубкой','multi':'Многоступенчатый','other':'Иная форма'};
+var counts = {};
+DATA.filter(function(d){ return !d.p && d.formType; }).forEach(function(d){ counts[d.formType] = (counts[d.formType]||0)+1; });
+var statsEl = document.getElementById('type-stats');
+statsEl.innerHTML = Object.entries(counts).sort(function(a,b){return b[1]-a[1];}).map(function(e){ return typeLabels[e[0]] + ': <strong>' + e[1] + '</strong>'; }).join(' &middot; ');
 
 // Источники
-const srcCont = document.getElementById('sources');
-const typeNames = {method:'Метод', article:'Статья', analogue:'Аналог', book:'Книга', blog:'Блог'};
-SOURCES.forEach(s => {
-  const el = document.createElement('div');
+var srcCont = document.getElementById('sources');
+var typeNames = {method:'Метод', article:'Статья', analogue:'Аналог', book:'Книга', blog:'Блог'};
+SOURCES.forEach(function(s) {
+  var el = document.createElement('div');
   el.className = 'source-item';
-  const cls = s.type || 'analogue';
-  let title = s.title;
-  if (s.url) title = `<a href="${s.url}" target="_blank">${s.title}</a>`;
-  el.innerHTML = `<span class="source-type ${cls}">${typeNames[cls] || cls}</span><span class="source-title">${title}</span>`;
+  var cls = s.type || 'analogue';
+  var title = s.title;
+  if (s.url) title = '<a href="' + s.url + '" target="_blank">' + s.title + '</a>';
+  el.innerHTML = '<span class="source-type ' + cls + '">' + (typeNames[cls] || cls) + '</span><span class="source-title">' + title + '</span>';
   srcCont.appendChild(el);
 });
 </script>
