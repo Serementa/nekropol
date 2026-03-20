@@ -53,27 +53,39 @@
   color: var(--mt);
   line-height: 1.45;
 }
-.video-links {
-  display: flex;
+.thanks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
   margin-top: 1.5rem;
-  flex-wrap: wrap;
 }
-.video-link {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
+.thanks-card {
   background: var(--sf);
   border: 1px solid var(--bd);
   border-radius: 4px;
-  padding: .75rem 1rem;
-  color: var(--tx);
-  font-size: .85rem;
-  transition: border-color .2s;
-  text-decoration: none;
+  padding: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  border-left: 3px solid var(--ac);
 }
-.video-link:hover { border-color: var(--ac); opacity: 1; }
-.video-link span { font-size: 1.2rem; }
+.thanks-icon {
+  font-size: 1.3rem;
+  color: var(--ac);
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+.thanks-info h4 {
+  font-family: var(--fd);
+  font-size: .95rem;
+  font-weight: 600;
+  margin-bottom: .2rem;
+}
+.thanks-info p {
+  font-size: .82rem;
+  color: var(--mt);
+  line-height: 1.45;
+}
 </style>
 </head>
 <body>
@@ -106,57 +118,73 @@
     <div class="timeline" id="timeline"></div>
   </section>
 
-  <!-- ── Видео ── -->
-  <section class="section">
-    <div class="section-label">Видео</div>
-    <div class="section-title">Процесс работы</div>
-    <div class="video-links">
-      <a href="https://youtu.be/gitqWymZb3I?si=D_iFgjcTdo_DtGD5" target="_blank" class="video-link">
-        <span>&#9654;</span> Как я делаю 3D-модель памятника
-      </a>
-      <a href="https://youtu.be/vaxZ9yhS-w4?si=PpxFrS7foMEymR4q" target="_blank" class="video-link">
-        <span>&#9654;</span> Моделирование Слободского некрополя
-      </a>
-    </div>
-  </section>
-
   <!-- ── Команда ── -->
   <section class="section">
-    <div class="section-label">Команда</div>
-    <div class="section-title">Участники проекта</div>
-    <div class="section-desc">Проект ведётся автором с привлечением консультантов из смежных исследовательских проектов.</div>
+    <div class="section-label">Проект</div>
+    <div class="section-title">Команда</div>
 
     <div class="team-grid">
       <div class="team-card">
         <div class="team-avatar">&#9733;</div>
         <div class="team-info">
-          <h4>Автор проекта</h4>
-          <div class="team-role">Руководитель</div>
-          <p>Полевая работа, архивные исследования, GPS-съёмка, фотофиксация, создание каталога и базы данных, разработка сайта.</p>
+          <h4>Александра Серемента</h4>
+          <div class="team-role">Создатель проекта</div>
+          <p>Создатель проекта «Библиотека российских некрополей». Ответственная за координацию работы и реализацию проекта.</p>
         </div>
       </div>
       <div class="team-card">
         <div class="team-avatar">&#9670;</div>
         <div class="team-info">
-          <h4>Анна Зиганшина</h4>
-          <div class="team-role">Консультант по 3D</div>
-          <p>Методическая помощь по 3D-моделированию. Исследователь проекта «Свод русских надписей». Соавтор статьи о методах документирования надгробий.</p>
+          <h4>Сергей Гайдук</h4>
+          <div class="team-role">Идейный вдохновитель</div>
+          <p>Историк, глава Убеженского сельского поселения.</p>
         </div>
       </div>
       <div class="team-card">
         <div class="team-avatar">&#9671;</div>
         <div class="team-info">
-          <h4>Маргарита Глазырина</h4>
-          <div class="team-role">Коллега</div>
-          <p>Лаборант-исследователь ВятГУ. Ведёт параллельный проект по Слободскому кладбищу г. Слободского с 3D-моделированием.</p>
+          <h4>Галина Лысенко</h4>
+          <div class="team-role">Консультант</div>
+          <p>Историк-генеалог. Ответственный консультант по историко-генеалогической части.</p>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar">&#9675;</div>
+        <div class="team-avatar">&#9672;</div>
         <div class="team-info">
-          <h4>Сообщество ВГД</h4>
-          <div class="team-role">Генеалогия</div>
-          <p>Контакты на Всероссийском генеалогическом древе (ВГД). Помощь с идентификацией фамилий и привязкой к архивным документам.</p>
+          <h4>Иван Виноградов-Ивановский</h4>
+          <div class="team-role">Консультант</div>
+          <p>IT-инженер. Ответственный консультант по технической части.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Благодарности ── -->
+  <section class="section">
+    <div class="section-label">Признательность</div>
+    <div class="section-title">Благодарности</div>
+    <div class="section-desc">Этот проект был бы невозможен без людей, которые безвозмездно помогали на каждом этапе — в поле, в архивах и за экраном.</div>
+
+    <div class="thanks-grid">
+      <div class="thanks-card">
+        <div class="thanks-icon">&#9876;</div>
+        <div class="thanks-info">
+          <h4>Волонтёры полевых работ</h4>
+          <p>Участники экспедиций, помогавшие с GPS-съёмкой, фотофиксацией и расчисткой надгробий. Имена будут добавлены.</p>
+        </div>
+      </div>
+      <div class="thanks-card">
+        <div class="thanks-icon">&#9998;</div>
+        <div class="thanks-info">
+          <h4>Консультанты и исследователи</h4>
+          <p>Все, кто делился экспертизой, архивными данными, фотографиями аналогичных кладбищ и контактами. Имена будут добавлены.</p>
+        </div>
+      </div>
+      <div class="thanks-card">
+        <div class="thanks-icon">&#9829;</div>
+        <div class="thanks-info">
+          <h4>Местные жители</h4>
+          <p>Жители станицы Убеженской, помогавшие с доступом к территории и устными свидетельствами. Имена будут добавлены.</p>
         </div>
       </div>
     </div>
