@@ -30,15 +30,6 @@
 .method-card:last-child { margin-bottom: 0; }
 .method-card h4 { font-family: var(--fd); font-size: .95rem; font-weight: 600; color: var(--ac); margin-bottom: .5rem; }
 .method-card p { font-size: .85rem; color: var(--mt); line-height: 1.5; }
-/* Аналоги */
-.analogues { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-.analogue-card { background: var(--sf); border: 1px solid var(--bd); border-radius: 4px; padding: 1.25rem; transition: border-color .2s; }
-.analogue-card:hover { border-color: var(--bd-light, #4a4a44); }
-.analogue-card h4 { font-family: var(--fd); font-size: .95rem; font-weight: 600; margin-bottom: .4rem; }
-.analogue-card p { font-size: .82rem; color: var(--mt); line-height: 1.45; margin-bottom: .5rem; }
-.analogue-links { display: flex; flex-wrap: wrap; gap: .5rem; }
-.analogue-links a { font-size: .75rem; color: var(--ac); border: 1px solid rgba(196,162,101,.25); padding: .2rem .55rem; border-radius: 2px; transition: all .2s; }
-.analogue-links a:hover { background: rgba(196,162,101,.15); border-color: var(--ac); opacity: 1; }
 /* СМИ */
 .media-list { margin-top: 1.5rem; }
 .media-item {
@@ -69,7 +60,6 @@
 /* Адаптив */
 @media (max-width: 768px) {
   .section-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-  .analogues { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -139,54 +129,14 @@
         <p><strong>Архивная работа:</strong> сопоставление имён на надгробиях с исповедными росписями 1827 года и метрическими книгами. 4 фамилии подтверждены документально: Мануилов, Кабельков, Сонин, Крамаров.</p>
       </div>
       <div>
-        <div class="method-card">
-          <h4>Мероприятие 1</h4>
+        <div class="method-card" style="border-left:3px solid var(--ac);">
+          <h4>3D-моделирование</h4>
           <p><strong>Agisoft Metashape (Fotoscan)</strong> — программа фотограмметрии. 30–50 снимков ортогонально поверхности камня. Результат — 3D-модель и карта высот, на которой видны надписи, не различимые глазом.</p>
           <p style="margin-top:.5rem">Методика рекомендована <strong>А. А. Зиганшиной</strong> из проекта «Свод русских надписей». В этом проекте аналогичный подход применяется к памятникам с 1680 года.</p>
         </div>
-        <div class="method-card">
-          <h4>Мероприятие 2</h4>
-          <p>Проект по сохранению артефактов письменности на надгробиях XVII–XVIII веков. Используют более сложные методы, но 3D через Agisoft — доступная альтернатива для нашего масштаба.</p>
-          <p style="margin-top:.5rem"><a href="https://cir.rssda.su/methodology/" target="_blank">Описание методологии &#8594;</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Аналоги ── -->
-  <section class="section">
-    <div class="section-title">Аналоги и ориентиры</div>
-    <div class="section-desc">Проектов по казачьим некрополям в России нет. Но есть проекты по историческим некрополям, которые служат для нас ориентиром.</div>
-    <div class="analogues">
-      <div class="analogue-card">
-        <h4>Старое кладбище, г. Таганрог</h4>
-        <p>Наиболее полный российский аналог: сайт, печатный путеводитель, виртуальный тур, 3D-модели 11 объектов, экскурсии, Telegram-канал.</p>
-        <div class="analogue-links">
-          <a href="http://cemetery.su/" target="_blank">Сайт</a>
-          <a href="https://marfano.ru/pltg/" target="_blank">Виртуальный тур</a>
-          <a href="https://t.me/cemetery_su/" target="_blank">Telegram</a>
-        </div>
-      </div>
-      <div class="analogue-card">
-        <h4>Слободское кладбище, г. Слободской</h4>
-        <p>Печатный каталог с фотографиями. Работа над 3D-моделями на базе ВятГУ (исследователь — Маргарита Глазырина).</p>
-        <div class="analogue-links">
-          <a href="https://youtu.be/vaxZ9yhS-w4?si=PpxFrS7foMEymR4q" target="_blank">Видео моделирования</a>
-        </div>
-      </div>
-      <div class="analogue-card">
-        <h4>Проект «Свод русских надписей»</h4>
-        <p>Академический проект по сохранению артефактов письменности на надгробиях 1680+ годов. Методология моделирования стала основой нашего подхода.</p>
-        <div class="analogue-links">
-          <a href="https://cir.rssda.su/" target="_blank">Сайт проекта</a>
-          <a href="https://cir.rssda.su/methodology/" target="_blank">Методология</a>
-        </div>
-      </div>
-      <div class="analogue-card">
-        <h4>Куяльницкое кладбище, Одесса</h4>
-        <p>Технически продвинутый зарубежный аналог. Профинансирован ЕС. План кладбища, 3D-модели, описания. Много крестов, похожих на убеженские.</p>
-        <div class="analogue-links">
-          <a href="https://pixelatedrealities.org/uk/portfolio/czvyntar-sotnykivskoyi-sichi/" target="_blank">Проект</a>
+        <div class="method-card" style="border-left:3px solid var(--ac);">
+          <h4>Придание исторического статуса объекту</h4>
+          <p>Ни одно казачье кладбище Кубани не имеет статуса охраняемого памятника. Мы собираем доказательную базу — каталог, координаты, научные описания, типологию — чтобы подготовить обоснование для присвоения некрополю статуса объекта культурного наследия.</p>
         </div>
       </div>
     </div>
@@ -289,7 +239,7 @@
   <div class="footer-inner">
     <div class="footer-left">
       <strong>Казачий некрополь ст. Убеженской</strong><br>
-      Исследовательский проект · 2025–2026
+      Исследовательский проект · 2004–2026
     </div>
     <div class="footer-links">
       <a href="index.html">Главная</a>
